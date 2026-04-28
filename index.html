@@ -3,317 +3,276 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SenhaControl — Cartório</title>
+<title>SENA — Sistema Eletrônico Notarial de Apoio</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&family=Playfair+Display:wght@400;700;900&family=Cormorant+Garamond:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-/* ============================================================
-   DESIGN TOKENS
-============================================================ */
 :root {
-  --bg: #0f1117; --bg2: #171923; --bg3: #1e2130; --bg4: #252840;
-  --border: rgba(255,255,255,0.08); --border2: rgba(255,255,255,0.15);
-  --text: #e8eaf0; --text2: #9da3b4; --text3: #5c6278;
-  --accent: #4f8ef7; --accent2: #2563eb;
-  --green: #22c55e; --green2: #15803d;
-  --amber: #f59e0b; --amber2: #b45309;
-  --red: #ef4444; --red2: #b91c1c;
-  --purple: #a78bfa; --teal: #2dd4bf;
-  --gold: #c9a84c; --gold2: #a07830; --gold3: #f0d080;
-  --cream: #f5f0e8; --cream2: #e8e0d0;
-  --navy: #0a1628; --navy2: #0d1f3c;
-  --font: 'DM Sans', sans-serif;
-  --serif: 'Playfair Display', serif;
-  --serif2: 'Cormorant Garamond', serif;
-  --mono: 'DM Mono', monospace;
-  --r: 10px; --r2: 16px;
+  --bg:#0f1117;--bg2:#171923;--bg3:#1e2130;--bg4:#252840;
+  --border:rgba(255,255,255,0.08);--border2:rgba(255,255,255,0.15);
+  --text:#e8eaf0;--text2:#9da3b4;--text3:#5c6278;
+  --accent:#4f8ef7;--accent2:#2563eb;
+  --green:#22c55e;--green2:#15803d;
+  --amber:#f59e0b;--red:#ef4444;--red2:#b91c1c;
+  --gold:#c9a84c;--gold2:#a07830;--gold3:#f0d080;
+  --cream:#f5f0e8;--cream2:#e8e0d0;
+  --navy:#152030;--navy2:#1a2d40;--navy3:#0e1c2a;
+  --font:'DM Sans',sans-serif;--serif:'Playfair Display',serif;
+  --serif2:'Cormorant Garamond',serif;--mono:'DM Mono',monospace;
+  --r:10px;--r2:16px;
 }
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html, body { height: 100%; background: var(--bg); color: var(--text); font-family: var(--font); font-size: 15px; }
-::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: var(--bg); } ::-webkit-scrollbar-thumb { background: var(--bg4); border-radius: 3px; }
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--font);font-size:15px;}
+::-webkit-scrollbar{width:6px;}::-webkit-scrollbar-track{background:var(--bg);}::-webkit-scrollbar-thumb{background:var(--bg4);border-radius:3px;}
 
-/* ============================================================
-   LOGIN SCREEN
-============================================================ */
-#login-screen {
-  min-height: 100vh; display: flex; align-items: center; justify-content: center;
-  background: var(--bg);
-  background-image: radial-gradient(ellipse at 30% 20%, rgba(79,142,247,0.06) 0%, transparent 60%),
-                    radial-gradient(ellipse at 70% 80%, rgba(201,168,76,0.05) 0%, transparent 60%);
-}
-.login-box {
-  width: 420px; background: var(--bg2); border: 1px solid var(--border2);
-  border-radius: 20px; padding: 48px 40px;
-  box-shadow: 0 24px 80px rgba(0,0,0,0.5);
-}
-.login-logo { text-align: center; margin-bottom: 32px; }
-.login-logo-icon {
-  width: 64px; height: 64px; margin: 0 auto 16px;
-  background: linear-gradient(135deg, var(--gold2), var(--gold));
-  border-radius: 16px; display: flex; align-items: center; justify-content: center;
-  font-size: 28px;
-}
-.login-logo h1 { font-family: var(--serif); font-size: 22px; font-weight: 700; color: var(--text); }
-.login-logo p { font-size: 12px; color: var(--text3); margin-top: 4px; }
-.login-err { background: rgba(239,68,68,0.12); border: 1px solid rgba(239,68,68,0.3); color: #fca5a5; font-size: 13px; padding: 10px 14px; border-radius: 8px; margin-bottom: 16px; display: none; }
-.login-err.show { display: block; }
+/* LOGIN */
+#login-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--bg);background-image:radial-gradient(ellipse at 30% 20%,rgba(79,142,247,0.06) 0%,transparent 60%),radial-gradient(ellipse at 70% 80%,rgba(201,168,76,0.05) 0%,transparent 60%);}
+.login-box{width:440px;background:var(--bg2);border:1px solid var(--border2);border-radius:20px;padding:48px 40px;box-shadow:0 24px 80px rgba(0,0,0,0.5);}
+.login-logo{text-align:center;margin-bottom:32px;}
+.login-logo img{height:72px;margin:0 auto 12px;display:block;filter:drop-shadow(0 4px 16px rgba(201,168,76,0.3));}
+.login-logo h1{font-family:var(--serif);font-size:18px;font-weight:700;color:var(--text);}
+.login-logo .sena-sigla{font-size:12px;color:var(--gold);letter-spacing:0.12em;text-transform:uppercase;margin-top:2px;}
+.login-logo p{font-size:12px;color:var(--text3);margin-top:4px;}
+.login-err{background:rgba(239,68,68,0.12);border:1px solid rgba(239,68,68,0.3);color:#fca5a5;font-size:13px;padding:10px 14px;border-radius:8px;margin-bottom:16px;display:none;}
+.login-err.show{display:block;}
 
-/* ============================================================
-   NAV
-============================================================ */
-.nav {
-  display: flex; align-items: center; gap: 4px;
-  padding: 10px 16px; background: var(--bg2); border-bottom: 1px solid var(--border);
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100; flex-wrap: wrap;
-}
-.nav-logo { font-family: var(--serif); font-size: 15px; font-weight: 700; color: var(--gold); margin-right: 12px; white-space: nowrap; }
-.nav-btn {
-  padding: 6px 12px; border-radius: 6px; border: none;
-  background: transparent; color: var(--text2); font-family: var(--font);
-  font-size: 13px; cursor: pointer; transition: all 0.15s; white-space: nowrap;
-}
-.nav-btn:hover { background: var(--bg3); color: var(--text); }
-.nav-btn.active { background: var(--accent2); color: #fff; }
-.nav-right { margin-left: auto; display: flex; align-items: center; gap: 12px; }
-.nav-user { font-size: 12px; color: var(--text3); font-family: var(--mono); }
-.nav-badge { font-size: 10px; padding: 2px 7px; border-radius: 6px; font-weight: 600; }
-.nav-badge.gestor { background: rgba(201,168,76,0.2); color: var(--gold); }
-.nav-badge.recepcao { background: rgba(79,142,247,0.2); color: var(--accent); }
-.nav-badge.atendente { background: rgba(34,197,94,0.2); color: var(--green); }
-.btn-logout { padding: 5px 10px; border-radius: 6px; border: 1px solid var(--border); background: transparent; color: var(--text3); font-size: 12px; cursor: pointer; transition: all 0.15s; }
-.btn-logout:hover { border-color: var(--red2); color: var(--red); }
+/* NAV */
+.nav{display:flex;align-items:center;gap:4px;padding:8px 16px;background:var(--bg2);border-bottom:1px solid var(--border);position:fixed;top:0;left:0;right:0;z-index:100;flex-wrap:wrap;}
+.nav-logo{display:flex;align-items:center;gap:10px;margin-right:12px;}
+.nav-logo img{height:32px;filter:drop-shadow(0 2px 8px rgba(201,168,76,0.25));}
+.nav-logo-text{font-family:var(--serif);font-size:14px;font-weight:700;color:var(--gold);white-space:nowrap;}
+.nav-btn{padding:6px 12px;border-radius:6px;border:none;background:transparent;color:var(--text2);font-family:var(--font);font-size:13px;cursor:pointer;transition:all 0.15s;white-space:nowrap;}
+.nav-btn:hover{background:var(--bg3);color:var(--text);}
+.nav-btn.active{background:var(--accent2);color:#fff;}
+.nav-right{margin-left:auto;display:flex;align-items:center;gap:10px;}
+.nav-user{font-size:12px;color:var(--text3);font-family:var(--mono);}
+.nav-badge{font-size:10px;padding:2px 7px;border-radius:6px;font-weight:600;}
+.nav-badge.gestor{background:rgba(201,168,76,0.2);color:var(--gold);}
+.nav-badge.recepcao{background:rgba(79,142,247,0.2);color:var(--accent);}
+.nav-badge.atendente{background:rgba(34,197,94,0.2);color:var(--green);}
+.nav-badge.painel{background:rgba(167,139,250,0.2);color:#a78bfa;}
+.btn-logout{padding:5px 10px;border-radius:6px;border:1px solid var(--border);background:transparent;color:var(--text3);font-size:12px;cursor:pointer;transition:all 0.15s;}
+.btn-logout:hover{border-color:var(--red2);color:var(--red);}
 
-/* ============================================================
-   SCREENS
-============================================================ */
-.screen { display: none; padding: 72px 0 40px; min-height: 100vh; }
-.screen.active { display: block; }
-.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+/* SCREENS */
+.screen{display:none;padding:64px 0 40px;min-height:100vh;}
+.screen.active{display:block;}
+.container{max-width:1200px;margin:0 auto;padding:0 24px;}
 
-/* ============================================================
-   PAINEL TV — IDENTIDADE CARTÓRIO
-============================================================ */
-#screen-painel {
-  padding: 0; min-height: 100vh;
-  background: var(--navy);
+/* ========== PAINEL TV ========== */
+#screen-painel{
+  padding:0;min-height:100vh;
+  background:var(--navy3);
   background-image:
-    repeating-linear-gradient(0deg, transparent, transparent 59px, rgba(201,168,76,0.04) 59px, rgba(201,168,76,0.04) 60px),
-    repeating-linear-gradient(90deg, transparent, transparent 59px, rgba(201,168,76,0.04) 59px, rgba(201,168,76,0.04) 60px);
-  display: none; flex-direction: column;
+    radial-gradient(ellipse at 20% 10%,rgba(201,168,76,0.07) 0%,transparent 50%),
+    radial-gradient(ellipse at 80% 90%,rgba(201,168,76,0.05) 0%,transparent 50%),
+    repeating-linear-gradient(0deg,transparent,transparent 79px,rgba(201,168,76,0.025) 79px,rgba(201,168,76,0.025) 80px),
+    repeating-linear-gradient(90deg,transparent,transparent 79px,rgba(201,168,76,0.025) 79px,rgba(201,168,76,0.025) 80px);
+  display:none;flex-direction:column;
 }
-#screen-painel.active { display: flex; }
+#screen-painel.active{display:flex;}
 
-.painel-header {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 18px 48px;
-  background: var(--navy2);
-  border-bottom: 2px solid var(--gold2);
-  position: relative;
+.painel-header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:20px 56px;background:var(--navy2);
+  border-bottom:2px solid var(--gold2);position:relative;
 }
-.painel-header::after {
-  content: ''; position: absolute; bottom: -5px; left: 0; right: 0; height: 2px;
-  background: linear-gradient(90deg, transparent, var(--gold), transparent);
-}
-.painel-header-logo { display: flex; align-items: center; gap: 16px; }
-.painel-header-emblem {
-  width: 52px; height: 52px; border-radius: 50%;
-  background: conic-gradient(var(--gold2) 0deg, var(--gold) 60deg, var(--gold2) 120deg, var(--gold3) 180deg, var(--gold2) 240deg, var(--gold) 300deg, var(--gold2) 360deg);
-  display: flex; align-items: center; justify-content: center; font-size: 24px;
-  box-shadow: 0 0 20px rgba(201,168,76,0.3);
-}
-.painel-header-nome h1 {
-  font-family: var(--serif); font-size: 20px; font-weight: 700;
-  color: var(--cream); letter-spacing: 0.02em;
-}
-.painel-header-nome p { font-size: 11px; color: var(--gold2); text-transform: uppercase; letter-spacing: 0.12em; margin-top: 2px; }
-.painel-header-clock {
-  font-family: var(--mono); font-size: 32px; font-weight: 400; color: var(--gold);
-  text-align: right;
-}
-.painel-header-date { font-size: 11px; color: var(--gold2); text-align: right; margin-top: 4px; }
+.painel-header::after{content:'';position:absolute;bottom:-5px;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);}
+.painel-header-logo{display:flex;align-items:center;gap:20px;}
+.painel-header-img{height:64px;filter:drop-shadow(0 0 16px rgba(201,168,76,0.4));}
+.painel-header-sep{width:1px;height:52px;background:linear-gradient(to bottom,transparent,var(--gold2),transparent);}
+.painel-header-nome h1{font-family:var(--serif);font-size:24px;font-weight:700;color:var(--cream);letter-spacing:0.02em;}
+.painel-header-nome .sub{font-size:13px;color:var(--gold2);text-transform:uppercase;letter-spacing:0.14em;margin-top:3px;}
+.painel-header-clock{font-family:var(--mono);font-size:40px;font-weight:400;color:var(--gold);text-align:right;letter-spacing:0.04em;}
+.painel-header-date{font-size:13px;color:var(--gold2);text-align:right;margin-top:4px;text-transform:capitalize;}
 
-.painel-body {
-  flex: 1; display: grid; grid-template-columns: 1fr 380px;
-  gap: 0; overflow: hidden;
-}
-.painel-main-col {
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  padding: 32px 48px; border-right: 1px solid rgba(201,168,76,0.15);
-}
-.painel-chamando-label {
-  font-family: var(--serif2); font-size: 14px; font-weight: 400;
-  text-transform: uppercase; letter-spacing: 0.2em;
-  color: var(--gold2); margin-bottom: 16px;
-}
-.painel-ornament {
-  display: flex; align-items: center; gap: 16px; margin-bottom: 16px; width: 100%;
-}
-.painel-ornament-line { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--gold2)); }
-.painel-ornament-line.rev { background: linear-gradient(90deg, var(--gold2), transparent); }
-.painel-ornament-diamond {
-  width: 8px; height: 8px; background: var(--gold); transform: rotate(45deg);
-  box-shadow: 0 0 8px rgba(201,168,76,0.5);
-}
-.painel-numero-wrap {
-  background: rgba(201,168,76,0.05); border: 1px solid rgba(201,168,76,0.2);
-  border-radius: 20px; padding: 24px 64px; margin-bottom: 20px; text-align: center;
-  position: relative; overflow: hidden;
-}
-.painel-numero-wrap::before {
-  content: ''; position: absolute; top: 0; left: -100%; width: 60%; height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(201,168,76,0.08), transparent);
-  animation: shimmer 3s infinite;
-}
-@keyframes shimmer { to { left: 150%; } }
-.painel-numero {
-  font-family: var(--serif); font-size: 120px; font-weight: 900; line-height: 1;
-  background: linear-gradient(135deg, var(--gold2) 0%, var(--gold3) 40%, var(--gold) 60%, var(--gold2) 100%);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-  filter: drop-shadow(0 0 20px rgba(201,168,76,0.3));
-}
-.painel-guiche {
-  font-family: var(--serif2); font-size: 28px; font-weight: 600; color: var(--cream2);
-  letter-spacing: 0.04em; margin-bottom: 6px;
-}
-.painel-setor-tv {
-  font-size: 14px; color: var(--gold2); text-transform: uppercase;
-  letter-spacing: 0.12em; font-family: var(--font);
-}
-.painel-idle {
-  font-family: var(--serif); font-size: 32px; color: rgba(201,168,76,0.3);
-}
+.painel-body{flex:1;display:grid;grid-template-columns:1fr 420px;gap:0;overflow:hidden;}
+.painel-main-col{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 56px;border-right:1px solid rgba(201,168,76,0.12);}
 
-.painel-side-col {
-  display: flex; flex-direction: column;
-  background: rgba(10,22,40,0.8);
-}
-.painel-side-section {
-  padding: 20px 24px;
-  border-bottom: 1px solid rgba(201,168,76,0.1);
-}
-.painel-side-title {
-  font-size: 10px; text-transform: uppercase; letter-spacing: 0.14em;
-  color: var(--gold2); font-family: var(--font); font-weight: 600;
-  margin-bottom: 14px; display: flex; align-items: center; gap: 8px;
-}
-.painel-side-title::after { content: ''; flex: 1; height: 1px; background: rgba(201,168,76,0.15); }
+.painel-chamando-label{font-family:var(--serif2);font-size:17px;font-weight:400;text-transform:uppercase;letter-spacing:0.22em;color:var(--gold2);margin-bottom:20px;}
+.painel-ornament{display:flex;align-items:center;gap:18px;margin-bottom:18px;width:100%;}
+.painel-ornament-line{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold2));}
+.painel-ornament-line.rev{background:linear-gradient(90deg,var(--gold2),transparent);}
+.painel-ornament-diamond{width:10px;height:10px;background:var(--gold);transform:rotate(45deg);box-shadow:0 0 12px rgba(201,168,76,0.6);}
 
-.painel-fila-item {
-  display: flex; align-items: center; gap: 12px; padding: 10px 14px;
-  background: rgba(255,255,255,0.03); border: 1px solid rgba(201,168,76,0.08);
-  border-radius: 8px; margin-bottom: 6px;
+.painel-numero-wrap{
+  background:rgba(201,168,76,0.04);border:1px solid rgba(201,168,76,0.18);
+  border-radius:24px;padding:28px 72px;margin-bottom:22px;text-align:center;
+  position:relative;overflow:hidden;min-width:400px;
 }
-.painel-fila-item .pfi-num {
-  font-family: var(--mono); font-size: 22px; font-weight: 500; color: var(--gold);
-  min-width: 72px;
+.painel-numero-wrap::before{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(201,168,76,0.07),transparent);animation:shimmer 3.5s infinite;}
+@keyframes shimmer{to{left:150%;}}
+.painel-numero{
+  font-family:var(--serif);font-size:148px;font-weight:900;line-height:1;
+  background:linear-gradient(135deg,var(--gold2) 0%,var(--gold3) 35%,var(--gold) 55%,var(--gold2) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  filter:drop-shadow(0 0 24px rgba(201,168,76,0.25));
 }
-.painel-fila-item .pfi-info { flex: 1; }
-.painel-fila-item .pfi-tipo { font-size: 11px; color: var(--text3); }
-.pfi-prio .pfi-num { color: var(--amber); }
-.pfi-prio { border-color: rgba(245,158,11,0.2); background: rgba(245,158,11,0.05); }
+@keyframes numPulse{0%{filter:drop-shadow(0 0 24px rgba(201,168,76,0.25));}50%{filter:drop-shadow(0 0 48px rgba(201,168,76,0.5));}100%{filter:drop-shadow(0 0 24px rgba(201,168,76,0.25));}}
+.painel-numero.chamando{animation:numPulse 2s ease 3;}
+.painel-guiche{font-family:var(--serif2);font-size:34px;font-weight:600;color:var(--cream2);letter-spacing:0.04em;margin-bottom:8px;}
+.painel-setor-tv{font-size:16px;color:var(--gold2);text-transform:uppercase;letter-spacing:0.14em;font-family:var(--font);}
 
-.painel-hist-row { display: flex; align-items: center; gap: 10px; padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
-.painel-hist-num { font-family: var(--mono); font-size: 16px; color: var(--text3); min-width: 70px; }
-.painel-hist-func { font-size: 12px; color: var(--text3); }
-.painel-hist-hora { font-size: 11px; color: var(--text3); margin-left: auto; font-family: var(--mono); }
+.painel-side-col{display:flex;flex-direction:column;background:rgba(10,18,28,0.6);}
+.painel-side-section{padding:22px 28px;border-bottom:1px solid rgba(201,168,76,0.08);}
+.painel-side-title{font-size:11px;text-transform:uppercase;letter-spacing:0.16em;color:var(--gold2);font-weight:600;margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+.painel-side-title::after{content:'';flex:1;height:1px;background:rgba(201,168,76,0.12);}
 
-.painel-footer {
-  padding: 12px 48px; display: flex; align-items: center; justify-content: space-between;
-  background: var(--navy2); border-top: 1px solid rgba(201,168,76,0.15);
+.pfi{display:flex;align-items:center;gap:14px;padding:12px 16px;background:rgba(255,255,255,0.03);border:1px solid rgba(201,168,76,0.07);border-radius:10px;margin-bottom:8px;}
+.pfi-num{font-family:var(--mono);font-size:26px;font-weight:500;color:var(--gold);min-width:80px;}
+.pfi-info{flex:1;}
+.pfi-setor{font-size:14px;color:var(--cream2);}
+.pfi-tipo{font-size:12px;color:var(--text3);margin-top:2px;}
+.pfi.prio .pfi-num{color:var(--amber);}
+.pfi.prio{border-color:rgba(245,158,11,0.18);background:rgba(245,158,11,0.04);}
+
+.painel-hist-row{display:flex;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04);}
+.painel-hist-num{font-family:var(--mono);font-size:18px;color:rgba(201,168,76,0.5);min-width:80px;}
+.painel-hist-func{font-size:13px;color:var(--text3);}
+.painel-hist-hora{font-size:12px;color:var(--text3);margin-left:auto;font-family:var(--mono);}
+
+.painel-stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.painel-stat{text-align:center;padding:14px;background:rgba(201,168,76,0.04);border:1px solid rgba(201,168,76,0.1);border-radius:10px;}
+.painel-stat-val{font-size:30px;font-weight:600;font-family:var(--mono);color:var(--gold);}
+.painel-stat-label{font-size:11px;color:var(--gold2);text-transform:uppercase;letter-spacing:0.1em;margin-top:5px;}
+
+.painel-footer{
+  padding:13px 56px;display:flex;align-items:center;justify-content:space-between;
+  background:var(--navy2);border-top:1px solid rgba(201,168,76,0.12);
 }
-.painel-footer-text { font-size: 11px; color: var(--gold2); font-family: var(--serif2); letter-spacing: 0.06em; }
-.painel-footer-meta { font-size: 11px; color: var(--text3); font-family: var(--mono); }
+.painel-footer-dev{font-size:12px;color:rgba(201,168,76,0.5);font-family:var(--serif2);letter-spacing:0.05em;}
+.painel-footer-meta{font-size:12px;color:var(--text3);font-family:var(--mono);}
+.painel-footer-ver{font-size:11px;color:var(--text3);}
 
-/* ============================================================
-   COMMON COMPONENTS
-============================================================ */
-.card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--r2); padding: 20px; }
-.card-title { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text3); margin-bottom: 16px; }
-.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-.grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
-.grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; }
-.met { background: var(--bg3); border-radius: var(--r); padding: 14px 16px; border: 1px solid var(--border); }
-.met-label { font-size: 11px; color: var(--text3); margin-bottom: 6px; }
-.met-val { font-size: 26px; font-weight: 600; font-family: var(--mono); color: var(--text); }
-.met-sub { font-size: 11px; color: var(--text3); margin-top: 4px; }
-.met.green .met-val { color: var(--green); } .met.amber .met-val { color: var(--amber); }
-.met.red .met-val { color: var(--red); } .met.blue .met-val { color: var(--accent); }
-.btn { padding: 10px 18px; border-radius: var(--r); border: none; font-family: var(--font); font-size: 14px; font-weight: 500; cursor: pointer; transition: all 0.15s; }
-.btn-primary { background: var(--accent2); color: #fff; } .btn-primary:hover { background: #1d4ed8; }
-.btn-green { background: var(--green2); color: #fff; } .btn-green:hover { background: #166534; }
-.btn-red { background: var(--red2); color: #fff; } .btn-red:hover { background: #991b1b; }
-.btn-ghost { background: var(--bg3); color: var(--text2); border: 1px solid var(--border); }
-.btn-ghost:hover { border-color: var(--border2); color: var(--text); }
-.btn-gold { background: linear-gradient(135deg, var(--gold2), var(--gold)); color: var(--navy); font-weight: 600; }
-.btn-gold:hover { opacity: 0.9; }
-.btn-lg { padding: 16px 28px; font-size: 16px; width: 100%; border-radius: 12px; }
-.btn-sm { padding: 6px 12px; font-size: 12px; }
-.form-group { margin-bottom: 14px; }
-.form-label { font-size: 12px; color: var(--text2); margin-bottom: 6px; display: block; }
-.form-input { width: 100%; padding: 9px 12px; border-radius: var(--r); border: 1px solid var(--border); background: var(--bg3); color: var(--text); font-family: var(--font); font-size: 14px; outline: none; transition: border-color 0.15s; }
-.form-input:focus { border-color: var(--accent2); }
-.form-select { width: 100%; padding: 9px 12px; border-radius: var(--r); border: 1px solid var(--border); background: var(--bg3); color: var(--text); font-family: var(--font); font-size: 14px; outline: none; cursor: pointer; }
-.table { width: 100%; border-collapse: collapse; font-size: 13px; }
-.table th { text-align: left; padding: 8px 12px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text3); border-bottom: 1px solid var(--border); }
-.table td { padding: 10px 12px; border-bottom: 1px solid var(--border); color: var(--text2); }
-.table tr:last-child td { border-bottom: none; } .table tr:hover td { background: var(--bg3); }
-.badge { display: inline-block; padding: 3px 8px; border-radius: 6px; font-size: 11px; font-weight: 600; }
-.badge-green { background: rgba(34,197,94,0.15); color: var(--green); }
-.badge-amber { background: rgba(245,158,11,0.15); color: var(--amber); }
-.badge-red { background: rgba(239,68,68,0.15); color: var(--red); }
-.badge-blue { background: rgba(79,142,247,0.15); color: var(--accent); }
-.badge-gold { background: rgba(201,168,76,0.15); color: var(--gold); }
-.modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 200; align-items: center; justify-content: center; }
-.modal-overlay.open { display: flex; }
-.modal { background: var(--bg2); border: 1px solid var(--border2); border-radius: 20px; padding: 32px; max-width: 480px; width: 90%; animation: modalIn 0.2s ease; }
-@keyframes modalIn { from { transform: scale(0.95); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-.tab-list { display: flex; gap: 4px; margin-bottom: 20px; border-bottom: 1px solid var(--border); }
-.tab-item { padding: 8px 16px; font-size: 13px; cursor: pointer; color: var(--text2); border-bottom: 2px solid transparent; transition: all 0.15s; }
-.tab-item.active { color: var(--accent); border-bottom-color: var(--accent); }
-.flex { display: flex; align-items: center; gap: 12px; }
-.flex-between { display: flex; align-items: center; justify-content: space-between; }
-.mt-2 { margin-top: 16px; } .mt-3 { margin-top: 24px; } .mb-2 { margin-bottom: 16px; } .mb-3 { margin-bottom: 24px; }
-h2 { font-size: 20px; font-weight: 600; } h3 { font-size: 16px; font-weight: 500; }
-p { color: var(--text2); font-size: 14px; }
+/* ========== COMMON COMPONENTS ========== */
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:20px;}
+.card-title{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--text3);margin-bottom:16px;}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+.met{background:var(--bg3);border-radius:var(--r);padding:14px 16px;border:1px solid var(--border);}
+.met-label{font-size:11px;color:var(--text3);margin-bottom:6px;}
+.met-val{font-size:26px;font-weight:600;font-family:var(--mono);color:var(--text);}
+.met-sub{font-size:11px;color:var(--text3);margin-top:4px;}
+.met.green .met-val{color:var(--green);}.met.amber .met-val{color:var(--amber);}
+.met.red .met-val{color:var(--red);}.met.blue .met-val{color:var(--accent);}
+.btn{padding:10px 18px;border-radius:var(--r);border:none;font-family:var(--font);font-size:14px;font-weight:500;cursor:pointer;transition:all 0.15s;}
+.btn-primary{background:var(--accent2);color:#fff;}.btn-primary:hover{background:#1d4ed8;}
+.btn-green{background:var(--green2);color:#fff;}.btn-green:hover{background:#166534;}
+.btn-red{background:var(--red2);color:#fff;}.btn-red:hover{background:#991b1b;}
+.btn-ghost{background:var(--bg3);color:var(--text2);border:1px solid var(--border);}.btn-ghost:hover{border-color:var(--border2);color:var(--text);}
+.btn-gold{background:linear-gradient(135deg,var(--gold2),var(--gold));color:var(--navy);font-weight:600;}.btn-gold:hover{opacity:0.9;}
+.btn-lg{padding:16px 28px;font-size:16px;width:100%;border-radius:12px;}
+.btn-sm{padding:6px 12px;font-size:12px;}
+.form-group{margin-bottom:14px;}
+.form-label{font-size:12px;color:var(--text2);margin-bottom:6px;display:block;}
+.form-input{width:100%;padding:9px 12px;border-radius:var(--r);border:1px solid var(--border);background:var(--bg3);color:var(--text);font-family:var(--font);font-size:14px;outline:none;transition:border-color 0.15s;}
+.form-input:focus{border-color:var(--accent2);}
+.form-select{width:100%;padding:9px 12px;border-radius:var(--r);border:1px solid var(--border);background:var(--bg3);color:var(--text);font-family:var(--font);font-size:14px;outline:none;cursor:pointer;}
+.table{width:100%;border-collapse:collapse;font-size:13px;}
+.table th{text-align:left;padding:8px 12px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:var(--text3);border-bottom:1px solid var(--border);}
+.table td{padding:10px 12px;border-bottom:1px solid var(--border);color:var(--text2);}
+.table tr:last-child td{border-bottom:none;}.table tr:hover td{background:var(--bg3);}
+.badge{display:inline-block;padding:3px 8px;border-radius:6px;font-size:11px;font-weight:600;}
+.badge-green{background:rgba(34,197,94,0.15);color:var(--green);}
+.badge-amber{background:rgba(245,158,11,0.15);color:var(--amber);}
+.badge-red{background:rgba(239,68,68,0.15);color:var(--red);}
+.badge-blue{background:rgba(79,142,247,0.15);color:var(--accent);}
+.badge-gold{background:rgba(201,168,76,0.15);color:var(--gold);}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:200;align-items:center;justify-content:center;}
+.modal-overlay.open{display:flex;}
+.modal{background:var(--bg2);border:1px solid var(--border2);border-radius:20px;padding:32px;max-width:500px;width:92%;animation:modalIn 0.2s ease;max-height:90vh;overflow-y:auto;}
+@keyframes modalIn{from{transform:scale(0.95);opacity:0;}to{transform:scale(1);opacity:1;}}
+.tab-list{display:flex;gap:4px;margin-bottom:20px;border-bottom:1px solid var(--border);}
+.tab-item{padding:8px 16px;font-size:13px;cursor:pointer;color:var(--text2);border-bottom:2px solid transparent;transition:all 0.15s;}
+.tab-item.active{color:var(--accent);border-bottom-color:var(--accent);}
+.flex{display:flex;align-items:center;gap:12px;}
+.flex-between{display:flex;align-items:center;justify-content:space-between;}
+.mt-2{margin-top:16px;}.mt-3{margin-top:24px;}.mb-2{margin-bottom:16px;}.mb-3{margin-bottom:24px;}
+h2{font-size:20px;font-weight:600;}p{color:var(--text2);font-size:14px;}
 
-/* RECEPÇÃO */
-.senha-emitida { text-align: center; padding: 40px; background: var(--bg3); border-radius: 20px; border: 1px solid var(--border); margin-bottom: 20px; }
-.senha-numero { font-size: 96px; font-weight: 600; font-family: var(--mono); color: var(--accent); line-height: 1; }
-.tipo-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; }
-.tipo-btn { padding: 20px 16px; border-radius: 14px; border: 1px solid var(--border); background: var(--bg3); color: var(--text); font-family: var(--font); font-size: 15px; font-weight: 500; cursor: pointer; text-align: center; transition: all 0.15s; }
-.tipo-btn:hover { border-color: var(--accent); background: var(--bg4); }
-.tipo-btn.selected { border-color: var(--accent2); background: rgba(37,99,235,0.15); color: var(--accent); }
-.tipo-btn .tipo-icon { font-size: 28px; display: block; margin-bottom: 8px; }
+/* RECEPÇÃO — botões de setor */
+.setor-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px;margin-bottom:20px;}
+.setor-btn{
+  padding:28px 16px;border-radius:16px;border:1px solid var(--border);
+  background:var(--bg3);color:var(--text);font-family:var(--font);
+  font-size:16px;font-weight:500;cursor:pointer;text-align:center;transition:all 0.18s;
+  position:relative;overflow:hidden;
+}
+.setor-btn::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+.setor-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.3);}
+.setor-btn .setor-prefix{font-family:var(--mono);font-size:28px;font-weight:700;display:block;margin-bottom:8px;}
+.setor-btn .setor-queue{font-size:11px;color:var(--text3);margin-top:6px;}
+.senha-emitida{text-align:center;padding:40px;background:var(--bg3);border-radius:20px;border:1px solid var(--border);margin-bottom:20px;}
+.senha-numero{font-size:96px;font-weight:600;font-family:var(--mono);color:var(--accent);line-height:1;}
+
 /* ATENDENTE */
-.atend-senha-atual { background: var(--bg3); border-radius: 16px; border: 2px solid var(--accent2); padding: 24px; text-align: center; margin-bottom: 16px; }
-.atend-num { font-size: 72px; font-weight: 600; font-family: var(--mono); color: var(--accent); }
-.atend-timer { font-size: 40px; font-family: var(--mono); font-weight: 500; text-align: center; color: var(--text); padding: 12px 0; }
-.timer-normal { color: var(--green); } .timer-warn { color: var(--amber); } .timer-danger { color: var(--red); }
-.progress-bar-wrap { height: 6px; background: var(--bg4); border-radius: 3px; margin: 8px 0; }
-.progress-bar { height: 6px; border-radius: 3px; background: var(--green); transition: width .5s, background .5s; }
-.chart-wrap { position: relative; height: 200px; }
+.atend-senha-atual{background:var(--bg3);border-radius:16px;border:2px solid var(--accent2);padding:24px;text-align:center;margin-bottom:16px;}
+.atend-num{font-size:72px;font-weight:600;font-family:var(--mono);color:var(--accent);}
+.atend-timer{font-size:40px;font-family:var(--mono);font-weight:500;text-align:center;color:var(--text);padding:12px 0;}
+.timer-normal{color:var(--green);}.timer-warn{color:var(--amber);}.timer-danger{color:var(--red);}
+.progress-bar-wrap{height:6px;background:var(--bg4);border-radius:3px;margin:8px 0;}
+.progress-bar{height:6px;border-radius:3px;background:var(--green);transition:width .5s,background .5s;}
+.chart-wrap{position:relative;height:200px;}
 /* AVALIAÇÃO */
-.aval-emoji-row { display: flex; justify-content: center; gap: 16px; margin: 24px 0; }
-.aval-emoji { font-size: 48px; cursor: pointer; border-radius: 50%; width: 72px; height: 72px; display: flex; align-items: center; justify-content: center; border: 2px solid transparent; transition: all 0.15s; }
-.aval-emoji:hover { background: var(--bg3); border-color: var(--border2); transform: scale(1.1); }
-.aval-emoji.sel { border-color: var(--accent); background: rgba(79,142,247,0.15); transform: scale(1.1); }
+.aval-emoji-row{display:flex;justify-content:center;gap:14px;margin:20px 0;}
+.aval-emoji{font-size:44px;cursor:pointer;border-radius:50%;width:68px;height:68px;display:flex;align-items:center;justify-content:center;border:2px solid transparent;transition:all 0.15s;}
+.aval-emoji:hover{background:var(--bg3);border-color:var(--border2);transform:scale(1.1);}
+.aval-emoji.sel{border-color:var(--accent);background:rgba(79,142,247,0.15);transform:scale(1.1);}
 
-/* CADASTRO USERS */
-.user-card { display: flex; align-items: center; gap: 12px; padding: 12px; background: var(--bg3); border-radius: var(--r); border: 1px solid var(--border); margin-bottom: 8px; }
-.user-avatar { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600; flex-shrink: 0; }
-.ua-gestor { background: rgba(201,168,76,0.2); color: var(--gold); }
-.ua-recepcao { background: rgba(79,142,247,0.2); color: var(--accent); }
-.ua-atendente { background: rgba(34,197,94,0.2); color: var(--green); }
+/* CADASTRO users */
+.user-card{display:flex;align-items:center;gap:12px;padding:12px;background:var(--bg3);border-radius:var(--r);border:1px solid var(--border);margin-bottom:8px;}
+.user-avatar{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;flex-shrink:0;}
+.ua-gestor{background:rgba(201,168,76,0.2);color:var(--gold);}
+.ua-recepcao{background:rgba(79,142,247,0.2);color:var(--accent);}
+.ua-atendente{background:rgba(34,197,94,0.2);color:var(--green);}
+.ua-painel{background:rgba(167,139,250,0.2);color:#a78bfa;}
+
+/* TOGGLE switch */
+.toggle-wrap{display:flex;align-items:center;gap:10px;cursor:pointer;}
+.toggle{width:40px;height:22px;border-radius:11px;background:var(--bg4);border:1px solid var(--border2);position:relative;transition:background 0.2s;flex-shrink:0;}
+.toggle.on{background:var(--green2);}
+.toggle::after{content:'';position:absolute;top:3px;left:3px;width:14px;height:14px;border-radius:50%;background:#fff;transition:transform 0.2s;}
+.toggle.on::after{transform:translateX(18px);}
+.toggle-label{font-size:13px;color:var(--text2);}
+
+/* FUNCIONÁRIOS de serviço especial */
+.func-serv-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:12px 14px;margin-bottom:8px;}
+.func-serv-row{display:flex;align-items:center;gap:10px;}
+.func-serv-nome{font-weight:500;font-size:14px;flex:1;}
+.func-serv-badges{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px;}
+
+/* Modal serviço recepção */
+.modal-servico-list{display:flex;flex-direction:column;gap:10px;margin:16px 0;}
+.servico-opt{padding:14px 16px;border-radius:12px;border:1px solid var(--border);background:var(--bg3);cursor:pointer;transition:all 0.15s;}
+.servico-opt:hover{border-color:var(--accent);background:var(--bg4);}
+.servico-opt h4{font-size:15px;font-weight:500;margin-bottom:4px;}
+.servico-opt p{font-size:12px;color:var(--text3);margin:0;}
+
+/* Func escolha recepção */
+.func-choice-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;margin:12px 0;}
+.func-choice-btn{padding:14px 10px;border-radius:12px;border:1px solid var(--border);background:var(--bg3);cursor:pointer;text-align:center;transition:all 0.15s;font-family:var(--font);}
+.func-choice-btn:hover{border-color:var(--accent);background:var(--bg4);}
+.func-choice-btn.selected{border-color:var(--accent2);background:rgba(37,99,235,0.15);}
+.func-choice-btn .fc-nome{font-size:13px;font-weight:500;color:var(--text);}
+.func-choice-btn .fc-fila{font-size:11px;color:var(--text3);margin-top:4px;}
+.func-choice-btn .fc-rod{font-size:10px;color:var(--green);margin-top:2px;}
+.tipo-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
+.tipo-btn{padding:18px 14px;border-radius:14px;border:1px solid var(--border);background:var(--bg3);color:var(--text);font-family:var(--font);font-size:14px;font-weight:500;cursor:pointer;text-align:center;transition:all 0.15s;}
+.tipo-btn:hover{border-color:var(--accent);background:var(--bg4);}
+.tipo-btn.selected{border-color:var(--accent2);background:rgba(37,99,235,0.15);color:var(--accent);}
+.tipo-btn .tipo-icon{font-size:26px;display:block;margin-bottom:6px;}
 </style>
 </head>
 <body>
 
-<!-- ===== LOGIN ===== -->
+<!-- LOGIN -->
 <div id="login-screen">
   <div class="login-box">
     <div class="login-logo">
-      <div class="login-logo-icon">⚖️</div>
-      <h1>SenhaControl</h1>
-      <p>Sistema de Controle de Atendimento</p>
+      <img src="https://senasis.com.br/Logo.png" alt="SENA" onerror="this.style.display='none'">
+      <h1>SENA</h1>
+      <div class="sena-sigla">Sistema Eletrônico Notarial de Apoio</div>
+      <p style="margin-top:8px">Acesso restrito a usuários cadastrados</p>
     </div>
     <div class="login-err" id="login-err">E-mail ou senha incorretos.</div>
     <div class="form-group">
@@ -325,16 +284,16 @@ p { color: var(--text2); font-size: 14px; }
       <input class="form-input" id="login-senha" type="password" placeholder="••••••••" onkeydown="if(event.key==='Enter')fazerLogin()">
     </div>
     <button class="btn btn-gold" style="width:100%;margin-top:8px" onclick="fazerLogin()">Entrar</button>
-    <p style="text-align:center;font-size:12px;margin-top:20px;color:var(--text3)">Acesso restrito a usuários cadastrados</p>
   </div>
 </div>
 
-<!-- ===== APP ===== -->
+<!-- APP -->
 <div id="app" style="display:none">
-
-<!-- NAV -->
 <nav class="nav" id="main-nav">
-  <span class="nav-logo">⚖️ SenhaControl</span>
+  <div class="nav-logo">
+    <img src="https://senasis.com.br/Logo.png" alt="SENA" onerror="this.style.display='none'">
+    <span class="nav-logo-text">SENA</span>
+  </div>
   <div id="nav-links"></div>
   <div class="nav-right">
     <span class="nav-badge" id="nav-perfil-badge"></span>
@@ -343,34 +302,18 @@ p { color: var(--text2); font-size: 14px; }
   </div>
 </nav>
 
-<!-- ===== SCREEN: RECEPÇÃO ===== -->
+<!-- RECEPÇÃO -->
 <div class="screen" id="screen-recepcao">
-<div class="container" style="max-width:700px;">
-  <div class="mt-2 mb-2 flex-between">
-    <div><h2>Emissão de senha</h2><p>Selecione o setor e tipo de atendimento</p></div>
+<div class="container" style="max-width:800px;">
+  <div class="mt-2 mb-3 flex-between">
+    <div><h2>Emissão de senha</h2><p>Selecione o setor desejado</p></div>
   </div>
   <div class="senha-emitida" id="rec-display">
     <div style="font-size:18px;color:var(--text3)">Nenhuma senha emitida</div>
-    <div style="font-size:13px;color:var(--text3);margin-top:8px">Selecione o tipo abaixo</div>
+    <div style="font-size:13px;color:var(--text3);margin-top:8px">Selecione o setor abaixo</div>
   </div>
-  <div class="card mb-2">
-    <div class="card-title">Setor</div>
-    <select class="form-select" id="rec-setor" onchange="atualizarServicos()">
-      <option value="">Selecione o setor...</option>
-    </select>
-  </div>
-  <div class="card mb-2" id="rec-servico-card" style="display:none">
-    <div class="card-title">Serviço</div>
-    <select class="form-select" id="rec-servico"><option value="">Selecione o serviço...</option></select>
-  </div>
-  <div class="card mb-2">
-    <div class="card-title">Tipo de atendimento</div>
-    <div class="tipo-grid">
-      <button class="tipo-btn selected" onclick="selTipo('Normal')" id="tipo-Normal"><span class="tipo-icon">🧾</span>Normal</button>
-      <button class="tipo-btn" onclick="selTipo('Prioritário')" id="tipo-Prioritário"><span class="tipo-icon">♿</span>Prioritário</button>
-    </div>
-  </div>
-  <button class="btn btn-primary btn-lg" onclick="emitirSenha()">Emitir Senha</button>
+  <div class="card-title">Setores disponíveis</div>
+  <div class="setor-grid" id="rec-setores-grid"></div>
   <div class="card mt-2">
     <div class="card-title">Fila atual</div>
     <div id="rec-fila-lista" style="font-size:13px;color:var(--text3)">Carregando...</div>
@@ -378,14 +321,15 @@ p { color: var(--text2); font-size: 14px; }
 </div>
 </div>
 
-<!-- ===== SCREEN: PAINEL TV ===== -->
+<!-- PAINEL TV -->
 <div class="screen" id="screen-painel">
   <div class="painel-header">
     <div class="painel-header-logo">
-      <div class="painel-header-emblem">⚖️</div>
+      <img src="https://senasis.com.br/Logo.png" alt="SENA" class="painel-header-img" onerror="this.style.display='none'">
+      <div class="painel-header-sep"></div>
       <div class="painel-header-nome">
-        <h1 id="painel-nome-cartorio">Cartório de Notas e Registro</h1>
-        <p>Painel de Atendimento</p>
+        <h1>SENA — Sistema Eletrônico Notarial de Apoio</h1>
+        <div class="sub">Painel de Atendimento ao Público</div>
       </div>
     </div>
     <div>
@@ -393,29 +337,21 @@ p { color: var(--text2); font-size: 14px; }
       <div class="painel-header-date" id="painel-date"></div>
     </div>
   </div>
-
   <div class="painel-body">
-    <!-- Coluna principal -->
     <div class="painel-main-col">
       <div class="painel-chamando-label">Senha chamada</div>
       <div class="painel-ornament">
-        <div class="painel-ornament-line"></div>
-        <div class="painel-ornament-diamond"></div>
-        <div class="painel-ornament-line rev"></div>
+        <div class="painel-ornament-line"></div><div class="painel-ornament-diamond"></div><div class="painel-ornament-line rev"></div>
       </div>
-      <div class="painel-numero-wrap" id="painel-numero-wrap">
-        <div class="painel-numero" id="painel-num">- - -</div>
+      <div class="painel-numero-wrap">
+        <div class="painel-numero" id="painel-num">— — —</div>
       </div>
       <div class="painel-guiche" id="painel-guiche">Aguardando chamada</div>
       <div class="painel-setor-tv" id="painel-setor-tv"></div>
       <div class="painel-ornament" style="margin-top:24px">
-        <div class="painel-ornament-line"></div>
-        <div class="painel-ornament-diamond"></div>
-        <div class="painel-ornament-line rev"></div>
+        <div class="painel-ornament-line"></div><div class="painel-ornament-diamond"></div><div class="painel-ornament-line rev"></div>
       </div>
     </div>
-
-    <!-- Coluna lateral -->
     <div class="painel-side-col">
       <div class="painel-side-section">
         <div class="painel-side-title">Próximas senhas</div>
@@ -426,27 +362,21 @@ p { color: var(--text2); font-size: 14px; }
         <div id="painel-historico"></div>
       </div>
       <div class="painel-side-section" style="border-bottom:none">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-          <div style="text-align:center;padding:12px;background:rgba(201,168,76,0.05);border:1px solid rgba(201,168,76,0.1);border-radius:8px">
-            <div style="font-size:24px;font-weight:600;font-family:var(--mono);color:var(--gold)" id="painel-total-dia">0</div>
-            <div style="font-size:10px;color:var(--gold2);text-transform:uppercase;letter-spacing:.08em;margin-top:4px">Atendidos</div>
-          </div>
-          <div style="text-align:center;padding:12px;background:rgba(201,168,76,0.05);border:1px solid rgba(201,168,76,0.1);border-radius:8px">
-            <div style="font-size:24px;font-weight:600;font-family:var(--mono);color:var(--gold)" id="painel-em-fila">0</div>
-            <div style="font-size:10px;color:var(--gold2);text-transform:uppercase;letter-spacing:.08em;margin-top:4px">Em fila</div>
-          </div>
+        <div class="painel-stats-grid">
+          <div class="painel-stat"><div class="painel-stat-val" id="painel-total-dia">0</div><div class="painel-stat-label">Atendidos</div></div>
+          <div class="painel-stat"><div class="painel-stat-val" id="painel-em-fila">0</div><div class="painel-stat-label">Em fila</div></div>
         </div>
       </div>
     </div>
   </div>
-
   <div class="painel-footer">
-    <div class="painel-footer-text">Atendimento com excelência e respeito</div>
+    <div class="painel-footer-dev">Desenvolvido por Marcelo Sena de Moraes · Senasis Tecnologia · (14) 99999-9999 · contato@senasis.com.br</div>
+    <div class="painel-footer-ver">SENA v2.0</div>
     <div class="painel-footer-meta" id="painel-footer-meta"></div>
   </div>
 </div>
 
-<!-- ===== SCREEN: ATENDENTE ===== -->
+<!-- ATENDENTE -->
 <div class="screen" id="screen-atendente">
 <div class="container" style="max-width:800px;">
   <div class="mt-2 mb-2 flex-between">
@@ -465,7 +395,7 @@ p { color: var(--text2); font-size: 14px; }
       <div style="font-size:15px;color:var(--text2);margin-top:4px" id="at-senha-info">Nenhuma senha</div>
       <div style="font-size:13px;color:var(--text3)" id="at-senha-setor"></div>
     </div>
-    <div class="card-title mt-2">Tempo de atendimento</div>
+    <div class="card-title mt-2">Tempo em atendimento</div>
     <div class="atend-timer timer-normal" id="at-timer">00:00</div>
     <div class="progress-bar-wrap"><div class="progress-bar" id="at-progress" style="width:0%"></div></div>
     <div style="font-size:11px;color:var(--text3);text-align:right">Meta: 8 min</div>
@@ -482,13 +412,13 @@ p { color: var(--text2); font-size: 14px; }
 </div>
 </div>
 
-<!-- ===== SCREEN: GESTOR ===== -->
+<!-- GESTOR -->
 <div class="screen" id="screen-gestor">
 <div class="container">
   <div class="mt-2 mb-3 flex-between">
     <div><h2>Painel do Tabelião</h2><p>Métricas e relatórios — ISO 9001 · ABNT · PQTA</p></div>
     <div class="flex">
-      <select class="form-select" style="width:180px" id="gest-setor-filtro" onchange="renderGestor()"><option value="">Todos os setores</option></select>
+      <select class="form-select" style="width:200px" id="gest-setor-filtro" onchange="renderGestor()"><option value="">Todos os setores</option></select>
       <button class="btn btn-gold btn-sm" onclick="gerarRelatorio()">Gerar relatório</button>
     </div>
   </div>
@@ -513,15 +443,15 @@ p { color: var(--text2); font-size: 14px; }
 </div>
 </div>
 
-<!-- ===== SCREEN: CADASTROS ===== -->
+<!-- CADASTROS -->
 <div class="screen" id="screen-cadastros">
 <div class="container">
-  <div class="mt-2 mb-2"><h2>Cadastros</h2><p>Gerencie setores, funcionários, serviços e usuários do sistema</p></div>
+  <div class="mt-2 mb-2"><h2>Cadastros</h2><p>Gerencie setores, funcionários, serviços e usuários</p></div>
   <div class="tab-list">
     <div class="tab-item active" onclick="showTab('tab-setores')">Setores</div>
     <div class="tab-item" onclick="showTab('tab-funcionarios')">Funcionários</div>
     <div class="tab-item" onclick="showTab('tab-servicos')">Serviços</div>
-    <div class="tab-item" onclick="showTab('tab-usuarios')">Usuários do sistema</div>
+    <div class="tab-item" onclick="showTab('tab-usuarios')">Usuários</div>
   </div>
 
   <!-- SETORES -->
@@ -531,7 +461,7 @@ p { color: var(--text2); font-size: 14px; }
         <div class="card-title">Novo setor</div>
         <div class="form-group"><label class="form-label">Nome do setor</label><input class="form-input" id="cad-setor-nome" placeholder="Ex: Registro de Imóveis"></div>
         <div class="form-group"><label class="form-label">Prefixo da senha</label><input class="form-input" id="cad-setor-prefix" placeholder="Ex: RI" maxlength="3"></div>
-        <div class="form-group"><label class="form-label">Cor</label><input type="color" class="form-input" id="cad-setor-cor" value="#4f8ef7" style="height:40px;cursor:pointer"></div>
+        <div class="form-group"><label class="form-label">Cor de destaque</label><input type="color" class="form-input" id="cad-setor-cor" value="#4f8ef7" style="height:40px;cursor:pointer"></div>
         <button class="btn btn-primary" onclick="addSetor()">Adicionar setor</button>
       </div>
       <div class="card"><div class="card-title">Setores cadastrados</div><div id="lista-setores"></div></div>
@@ -547,6 +477,12 @@ p { color: var(--text2); font-size: 14px; }
         <div class="form-group"><label class="form-label">Matrícula</label><input class="form-input" id="cad-func-mat" placeholder="Ex: 001"></div>
         <div class="form-group"><label class="form-label">Setor</label><select class="form-select" id="cad-func-setor"></select></div>
         <div class="form-group"><label class="form-label">Guichê / Mesa</label><input class="form-input" id="cad-func-guiche" placeholder="Ex: Guichê 1"></div>
+        <div class="form-group">
+          <label class="toggle-wrap" id="cad-func-rod-wrap">
+            <div class="toggle on" id="toggle-rod"></div>
+            <span class="toggle-label">Participa do rodízio automático</span>
+          </label>
+        </div>
         <button class="btn btn-primary" onclick="addFuncionario()">Adicionar funcionário</button>
       </div>
       <div class="card"><div class="card-title">Funcionários cadastrados</div><div id="lista-funcionarios"></div></div>
@@ -559,8 +495,14 @@ p { color: var(--text2); font-size: 14px; }
       <div class="card">
         <div class="card-title">Novo serviço</div>
         <div class="form-group"><label class="form-label">Nome do serviço</label><input class="form-input" id="cad-serv-nome" placeholder="Ex: Escritura de compra e venda"></div>
-        <div class="form-group"><label class="form-label">Setor</label><select class="form-select" id="cad-serv-setor"></select></div>
+        <div class="form-group"><label class="form-label">Setor</label><select class="form-select" id="cad-serv-setor" onchange="toggleServEspecial()"></select></div>
         <div class="form-group"><label class="form-label">Tempo estimado (min)</label><input class="form-input" type="number" id="cad-serv-tempo" placeholder="15" min="1"></div>
+        <div class="form-group">
+          <label class="toggle-wrap">
+            <div class="toggle" id="toggle-serv-func" onclick="toggleServFuncFlag()"></div>
+            <span class="toggle-label">Clientes escolhem o funcionário</span>
+          </label>
+        </div>
         <button class="btn btn-primary" onclick="addServico()">Adicionar serviço</button>
       </div>
       <div class="card"><div class="card-title">Serviços cadastrados</div><div id="lista-servicos"></div></div>
@@ -571,16 +513,17 @@ p { color: var(--text2); font-size: 14px; }
   <div id="tab-usuarios" style="display:none">
     <div class="grid-2">
       <div class="card">
-        <div class="card-title">Novo usuário do sistema</div>
+        <div class="card-title">Novo usuário</div>
         <div class="form-group"><label class="form-label">Nome completo</label><input class="form-input" id="cad-usr-nome" placeholder="Nome do usuário"></div>
         <div class="form-group"><label class="form-label">E-mail (login)</label><input class="form-input" type="email" id="cad-usr-email" placeholder="usuario@email.com"></div>
         <div class="form-group"><label class="form-label">Senha</label><input class="form-input" type="password" id="cad-usr-senha" placeholder="Mínimo 6 caracteres"></div>
         <div class="form-group">
           <label class="form-label">Perfil de acesso</label>
-          <select class="form-select" id="cad-usr-perfil">
+          <select class="form-select" id="cad-usr-perfil" onchange="toggleUsrFuncWrap()">
             <option value="gestor">Gestor / Tabelião — acesso total</option>
             <option value="recepcao">Recepção — emissão de senhas</option>
             <option value="atendente">Atendente — painel de atendimento</option>
+            <option value="painel">Painel TV — exibição somente</option>
           </select>
         </div>
         <div class="form-group" id="cad-usr-func-wrap" style="display:none">
@@ -594,15 +537,25 @@ p { color: var(--text2); font-size: 14px; }
   </div>
 </div>
 </div>
-
 </div><!-- /app -->
+
+<!-- MODAL: escolha de serviço na recepção -->
+<div class="modal-overlay" id="modal-setor">
+  <div class="modal" style="max-width:560px">
+    <div class="flex-between mb-2">
+      <div><h2 id="modal-setor-titulo">Selecione o serviço</h2><p id="modal-setor-sub"></p></div>
+      <button class="btn btn-ghost btn-sm" onclick="fecharModalSetor()">✕</button>
+    </div>
+    <div id="modal-setor-conteudo"></div>
+  </div>
+</div>
 
 <!-- MODAL AVALIAÇÃO -->
 <div class="modal-overlay" id="modal-aval">
   <div class="modal" style="text-align:center">
     <div style="font-size:32px;margin-bottom:8px">⭐</div>
     <h2 style="margin-bottom:6px">Avalie seu atendimento</h2>
-    <p style="margin-bottom:4px">Senha <strong id="modal-senha-num">---</strong></p>
+    <p>Senha <strong id="modal-senha-num">---</strong></p>
     <p style="font-size:12px;color:var(--text3)">Atendido por: <span id="modal-func-nome">—</span></p>
     <div class="aval-emoji-row">
       <div class="aval-emoji" onclick="selecionarAval(5)" title="Ótimo">😄</div>
@@ -621,7 +574,7 @@ p { color: var(--text2); font-size: 14px; }
 
 <!-- MODAL RELATÓRIO -->
 <div class="modal-overlay" id="modal-relatorio">
-  <div class="modal" style="max-width:820px;width:95%;max-height:90vh;overflow-y:auto">
+  <div class="modal" style="max-width:820px;width:95%;max-height:92vh">
     <div class="flex-between mb-2">
       <div><h2>Relatório de Auditoria</h2><p id="rel-periodo"></p></div>
       <div class="flex">
@@ -629,236 +582,313 @@ p { color: var(--text2); font-size: 14px; }
         <button class="btn btn-ghost btn-sm" onclick="fecharRelatorio()">Fechar</button>
       </div>
     </div>
-    <div id="relatorio-conteudo"></div>
+    <div id="relatorio-conteudo" style="background:#fff;color:#111;border-radius:10px;padding:20px;"></div>
   </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <script>
 // ============================================================
-// BANCO DE DADOS LOCAL
+// DB
 // ============================================================
-let DB = {
-  setores:[], funcionarios:[], servicos:[],
-  usuarios:[], fila:[], historico:[],
-  contadores:{}, atendimentoAtual:null,
-  funcionarioLogadoId:null,
-  avalPendente:null,
-  painel:{ ultimo:null, historico:[] }
-};
+let DB={setores:[],funcionarios:[],servicos:[],usuarios:[],fila:[],historico:[],contadores:{},atendimentoAtual:null,funcionarioLogadoId:null,avalPendente:null,painel:{ultimo:null,historico:[]}};
 
-function salvar(){ localStorage.setItem('sc_db', JSON.stringify(DB)); }
+function salvar(){localStorage.setItem('sc2_db',JSON.stringify(DB));}
 function carregar(){
-  try{ const d=localStorage.getItem('sc_db'); if(d) DB=JSON.parse(d); }catch(e){}
-  if(!DB.setores) DB.setores=[];
-  if(!DB.funcionarios) DB.funcionarios=[];
-  if(!DB.servicos) DB.servicos=[];
-  if(!DB.usuarios) DB.usuarios=[];
-  if(!DB.fila) DB.fila=[];
-  if(!DB.historico) DB.historico=[];
-  if(!DB.contadores) DB.contadores={};
-  if(!DB.painel) DB.painel={ultimo:null,historico:[]};
-
-  // seed padrão
+  try{const d=localStorage.getItem('sc2_db');if(d)DB=JSON.parse(d);}catch(e){}
+  if(!DB.setores)DB.setores=[];if(!DB.funcionarios)DB.funcionarios=[];if(!DB.servicos)DB.servicos=[];
+  if(!DB.usuarios)DB.usuarios=[];if(!DB.fila)DB.fila=[];if(!DB.historico)DB.historico=[];
+  if(!DB.contadores)DB.contadores={};if(!DB.painel)DB.painel={ultimo:null,historico:[]};
+  // seed
   if(!DB.setores.length){
     DB.setores=[
       {id:'s1',nome:'Cartório de Notas',prefix:'CN',cor:'#c9a84c'},
       {id:'s2',nome:'Registro de Imóveis',prefix:'RI',cor:'#4f8ef7'},
-      {id:'s3',nome:'Tabelionato de Protesto',prefix:'TP',cor:'#a78bfa'}
+      {id:'s3',nome:'Tabelionato de Protesto',prefix:'TP',cor:'#a78bfa'},
+      {id:'s4',nome:'Escrituras e Afins',prefix:'EA',cor:'#22c55e'},
+      {id:'s5',nome:'Procurações e Afins',prefix:'PA',cor:'#2dd4bf'}
     ];
     DB.funcionarios=[
-      {id:'f1',nome:'Ana Lima',matricula:'001',setorId:'s1',guiche:'Guichê 1',ativo:true},
-      {id:'f2',nome:'Bruno Souza',matricula:'002',setorId:'s1',guiche:'Guichê 2',ativo:true},
-      {id:'f3',nome:'Carla Dias',matricula:'003',setorId:'s2',guiche:'Guichê 3',ativo:true},
-      {id:'f4',nome:'Diego Rocha',matricula:'004',setorId:'s3',guiche:'Guichê 4',ativo:true}
+      {id:'f1',nome:'Ana Lima',matricula:'001',setorId:'s1',guiche:'Guichê 1',ativo:true,rodizio:true},
+      {id:'f2',nome:'Bruno Souza',matricula:'002',setorId:'s1',guiche:'Guichê 2',ativo:true,rodizio:true},
+      {id:'f3',nome:'Carla Dias',matricula:'003',setorId:'s2',guiche:'Guichê 3',ativo:true,rodizio:true},
+      {id:'f4',nome:'Diego Rocha',matricula:'004',setorId:'s3',guiche:'Guichê 4',ativo:true,rodizio:false},
+      {id:'f5',nome:'Eliana Costa',matricula:'005',setorId:'s4',guiche:'Guichê 5',ativo:true,rodizio:true},
+      {id:'f6',nome:'Fábio Mendes',matricula:'006',setorId:'s4',guiche:'Guichê 6',ativo:true,rodizio:true},
+      {id:'f7',nome:'Gisela Prado',matricula:'007',setorId:'s5',guiche:'Guichê 7',ativo:true,rodizio:true},
+      {id:'f8',nome:'Hélio Barros',matricula:'008',setorId:'s5',guiche:'Guichê 8',ativo:true,rodizio:false}
     ];
     DB.servicos=[
-      {id:'sv1',nome:'Reconhecimento de firma',setorId:'s1',tempo:5},
-      {id:'sv2',nome:'Autenticação de cópias',setorId:'s1',tempo:3},
-      {id:'sv3',nome:'Escritura de compra e venda',setorId:'s2',tempo:30},
-      {id:'sv4',nome:'Registro de hipoteca',setorId:'s2',tempo:20},
-      {id:'sv5',nome:'Procuração pública',setorId:'s3',tempo:15}
+      {id:'sv1',nome:'Reconhecimento de firma',setorId:'s1',tempo:5,clienteEscolheFuncionario:false},
+      {id:'sv2',nome:'Autenticação de cópias',setorId:'s1',tempo:3,clienteEscolheFuncionario:false},
+      {id:'sv3',nome:'Escritura de compra e venda',setorId:'s2',tempo:30,clienteEscolheFuncionario:false},
+      {id:'sv4',nome:'Registro de hipoteca',setorId:'s2',tempo:20,clienteEscolheFuncionario:false},
+      {id:'sv5',nome:'Procuração pública',setorId:'s3',tempo:15,clienteEscolheFuncionario:false},
+      {id:'sv6',nome:'Escritura de inventário',setorId:'s4',tempo:40,clienteEscolheFuncionario:true},
+      {id:'sv7',nome:'Escritura de doação',setorId:'s4',tempo:30,clienteEscolheFuncionario:true},
+      {id:'sv8',nome:'Procuração pública geral',setorId:'s5',tempo:20,clienteEscolheFuncionario:true},
+      {id:'sv9',nome:'Procuração para imóvel',setorId:'s5',tempo:25,clienteEscolheFuncionario:true}
     ];
-    // usuário gestor padrão
     DB.usuarios=[
       {id:'u1',nome:'Administrador',email:'admin@cartorio.com',senha:'admin123',perfil:'gestor',funcionarioId:null}
     ];
-    DB.contadores={s1:0,s2:0,s3:0};
+    DB.contadores={s1:0,s2:0,s3:0,s4:0,s5:0};
     salvar();
   }
+  // garantir campo rodizio em funcs antigos
+  DB.funcionarios.forEach(f=>{if(f.rodizio===undefined)f.rodizio=true;});
+  // garantir campo clienteEscolheFuncionario em servicos antigos
+  DB.servicos.forEach(s=>{if(s.clienteEscolheFuncionario===undefined)s.clienteEscolheFuncionario=false;});
 }
 
 // ============================================================
 // AUTH
 // ============================================================
 let usuarioLogado=null;
-
 function fazerLogin(){
   const email=document.getElementById('login-email').value.trim().toLowerCase();
   const senha=document.getElementById('login-senha').value;
-  const user=DB.usuarios.find(u=>u.email.toLowerCase()===email && u.senha===senha);
-  if(!user){ document.getElementById('login-err').classList.add('show'); return; }
+  const user=DB.usuarios.find(u=>u.email.toLowerCase()===email&&u.senha===senha);
+  if(!user){document.getElementById('login-err').classList.add('show');return;}
   document.getElementById('login-err').classList.remove('show');
   usuarioLogado=user;
-  // se atendente, guarda funcionário vinculado
-  if(user.perfil==='atendente' && user.funcionarioId){
-    DB.funcionarioLogadoId=user.funcionarioId;
-    salvar();
-  }
+  if(user.perfil==='atendente'&&user.funcionarioId){DB.funcionarioLogadoId=user.funcionarioId;salvar();}
   iniciarApp();
 }
-
 function fazerLogout(){
-  usuarioLogado=null;
-  DB.funcionarioLogadoId=null;
-  salvar();
+  usuarioLogado=null;DB.funcionarioLogadoId=null;salvar();
   clearInterval(timerInterval);
   document.getElementById('app').style.display='none';
   document.getElementById('login-screen').style.display='flex';
-  document.getElementById('login-email').value='';
-  document.getElementById('login-senha').value='';
+  document.getElementById('login-email').value='';document.getElementById('login-senha').value='';
 }
-
 function iniciarApp(){
   document.getElementById('login-screen').style.display='none';
   document.getElementById('app').style.display='block';
-  // nav badge
-  const labels={gestor:'Gestor',recepcao:'Recepção',atendente:'Atendente'};
+  const labels={gestor:'Gestor',recepcao:'Recepção',atendente:'Atendente',painel:'Painel TV'};
   document.getElementById('nav-perfil-badge').textContent=labels[usuarioLogado.perfil]||'';
   document.getElementById('nav-perfil-badge').className='nav-badge '+usuarioLogado.perfil;
   document.getElementById('nav-user-name').textContent=usuarioLogado.nome;
-  // montar nav links
   buildNav();
-  // ir para tela padrão do perfil
-  const defaultScreen={gestor:'gestor',recepcao:'recepcao',atendente:'atendente'};
-  showScreen(defaultScreen[usuarioLogado.perfil]||'recepcao');
-  // se atendente, pré-selecionar funcionário
-  if(usuarioLogado.perfil==='atendente' && DB.funcionarioLogadoId){
-    renderAtendente();
-  }
+  const def={gestor:'gestor',recepcao:'recepcao',atendente:'atendente',painel:'painel'};
+  showScreen(def[usuarioLogado.perfil]||'recepcao');
   renderAll();
 }
-
 function buildNav(){
   const links={
-    gestor:    [{id:'recepcao',label:'Recepção'},{id:'painel',label:'Painel TV'},{id:'atendente',label:'Atendente'},{id:'gestor',label:'Gestor / Tabelião'},{id:'cadastros',label:'Cadastros'}],
-    recepcao:  [{id:'recepcao',label:'Recepção'},{id:'painel',label:'Painel TV'}],
-    atendente: [{id:'atendente',label:'Meu Atendimento'},{id:'painel',label:'Painel TV'}]
+    gestor:[{id:'recepcao',label:'Recepção'},{id:'painel',label:'Painel TV'},{id:'atendente',label:'Atendente'},{id:'gestor',label:'Gestor'},{id:'cadastros',label:'Cadastros'}],
+    recepcao:[{id:'recepcao',label:'Recepção'},{id:'painel',label:'Painel TV'}],
+    atendente:[{id:'atendente',label:'Meu Atendimento'},{id:'painel',label:'Painel TV'}],
+    painel:[{id:'painel',label:'Painel TV'}]
   };
-  const nav=document.getElementById('nav-links');
-  nav.innerHTML=(links[usuarioLogado.perfil]||[]).map(l=>
-    `<button class="nav-btn" id="navbtn-${l.id}" onclick="showScreen('${l.id}')">${l.label}</button>`
-  ).join('');
+  document.getElementById('nav-links').innerHTML=(links[usuarioLogado.perfil]||[]).map(l=>`<button class="nav-btn" id="navbtn-${l.id}" onclick="showScreen('${l.id}')">${l.label}</button>`).join('');
 }
 
 // ============================================================
-// NAVEGAÇÃO
+// NAV
 // ============================================================
 function showScreen(id){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
-  const el=document.getElementById('screen-'+id);
-  if(el) el.classList.add('active');
-  const btn=document.getElementById('navbtn-'+id);
-  if(btn) btn.classList.add('active');
+  const el=document.getElementById('screen-'+id);if(el)el.classList.add('active');
+  const btn=document.getElementById('navbtn-'+id);if(btn)btn.classList.add('active');
   renderAll();
 }
 
 // ============================================================
-// CLOCK / DATE
+// CLOCK
 // ============================================================
 function atualizarClock(){
   const now=new Date();
   const hms=now.toLocaleTimeString('pt-BR');
   const data=now.toLocaleDateString('pt-BR',{weekday:'long',day:'2-digit',month:'long',year:'numeric'});
-  const p=document.getElementById('painel-clock');
-  const d=document.getElementById('painel-date');
+  const p=document.getElementById('painel-clock');const d=document.getElementById('painel-date');
   const f=document.getElementById('painel-footer-meta');
-  if(p) p.textContent=hms;
-  if(d) d.textContent=data;
-  if(f) f.textContent=`Atendimentos hoje: ${DB.historico.length} | Fila: ${DB.fila.filter(s=>s.status==='aguardando').length}`;
+  if(p)p.textContent=hms;if(d)d.textContent=data;
+  if(f)f.textContent=`Atendidos: ${DB.historico.length} | Fila: ${DB.fila.filter(s=>s.status==='aguardando').length}`;
 }
-setInterval(atualizarClock,1000);
-atualizarClock();
+setInterval(atualizarClock,1000);atualizarClock();
 
 // ============================================================
 // HELPERS
 // ============================================================
-function fmt(s){ const m=Math.floor(Math.abs(s)/60),ss=Math.floor(Math.abs(s)%60); return String(m).padStart(2,'0')+':'+String(ss).padStart(2,'0'); }
-function getSetor(id){ return DB.setores.find(s=>s.id===id); }
-function getFunc(id){ return DB.funcionarios.find(f=>f.id===id); }
-function getServico(id){ return DB.servicos.find(s=>s.id===id); }
-function uid(){ return '_'+Math.random().toString(36).substr(2,9); }
+function fmt(s){const m=Math.floor(Math.abs(s)/60),ss=Math.floor(Math.abs(s)%60);return String(m).padStart(2,'0')+':'+String(ss).padStart(2,'0');}
+function getSetor(id){return DB.setores.find(s=>s.id===id);}
+function getFunc(id){return DB.funcionarios.find(f=>f.id===id);}
+function getServico(id){return DB.servicos.find(s=>s.id===id);}
+function uid(){return '_'+Math.random().toString(36).substr(2,9);}
 function starsHtml(nota){
-  if(!nota) return '<span style="color:var(--text3)">—</span>';
-  const n=parseFloat(nota); let s='';
-  for(let i=1;i<=5;i++) s+=`<span style="color:${i<=Math.round(n)?'#f59e0b':'#333'}">★</span>`;
-  return s+` <small style="color:var(--text2)">${nota}</small>`;
+  if(!nota)return '<span style="color:#999">—</span>';
+  const n=parseFloat(nota);let s='';
+  for(let i=1;i<=5;i++)s+=`<span style="color:${i<=Math.round(n)?'#f59e0b':'#444'}">★</span>`;
+  return s+` <small style="color:#777">${nota}</small>`;
 }
 
 // ============================================================
-// VOZ
+// VOZ — só na tela do Painel TV, velocidade 1.15
 // ============================================================
 function falar(texto){
-  if(!window.speechSynthesis) return;
+  // Só fala se a tela painel estiver ativa OU o perfil for painel
+  const painelAtivo=document.getElementById('screen-painel')?.classList.contains('active');
+  if(!painelAtivo)return;
+  if(!window.speechSynthesis)return;
   window.speechSynthesis.cancel();
   const u=new SpeechSynthesisUtterance(texto);
-  u.lang='pt-BR'; u.rate=0.9; u.pitch=1;
+  u.lang='pt-BR';u.rate=1.15;u.pitch=1;
   setTimeout(()=>window.speechSynthesis.speak(u),200);
 }
 function anunciarSenha(senha){
   const setor=getSetor(senha.setorId);
   const func=getFunc(senha.funcionarioId);
   const guiche=func?func.guiche:'guichê';
-  const numStr=senha.numero.split('').join(', ');
+  // Quebra o número em letras/dígitos para pronunciar melhor
+  const numStr=senha.numero.replace(/([A-Z]+)(\d+)/,'$1, $2').split('').join(' ');
   falar(`Senha ${numStr}. ${setor?setor.nome:''}. Dirija-se ao ${guiche}.`);
 }
 
 // ============================================================
-// RECEPÇÃO
+// RECEPÇÃO — botões de setor + modal de serviço
 // ============================================================
-let tipoSelecionado='Normal';
+let recSetorSelecionado=null,recServicoSelecionado=null,recFuncSelecionado=null,tipoSelecionado='Normal';
+
+function renderSetoresGrid(){
+  const grid=document.getElementById('rec-setores-grid');if(!grid)return;
+  grid.innerHTML=DB.setores.map(s=>{
+    const naFila=DB.fila.filter(f=>f.setorId===s.id&&f.status==='aguardando').length;
+    return `<button class="setor-btn" onclick="abrirModalSetor('${s.id}')" style="border-color:${s.cor}33">
+      <style>.setor-btn[data-sid='${s.id}']::before{background:${s.cor}}</style>
+      <span class="setor-prefix" style="color:${s.cor}">${s.prefix}</span>
+      ${s.nome}
+      <div class="setor-queue">Na fila: ${naFila}</div>
+    </button>`;
+  }).join('');
+}
+
+function abrirModalSetor(setorId){
+  recSetorSelecionado=setorId;recServicoSelecionado=null;recFuncSelecionado=null;
+  const setor=getSetor(setorId);
+  document.getElementById('modal-setor-titulo').textContent=setor.nome;
+  document.getElementById('modal-setor-sub').textContent='Selecione o serviço desejado';
+  const servicos=DB.servicos.filter(s=>s.setorId===setorId);
+  const conteudo=document.getElementById('modal-setor-conteudo');
+  if(!servicos.length){
+    conteudo.innerHTML=`
+      <div style="margin-bottom:16px">
+        <div class="card-title">Tipo de atendimento</div>
+        <div class="tipo-grid">
+          <button class="tipo-btn selected" onclick="selTipo('Normal')" id="tipo-Normal"><span class="tipo-icon">🧾</span>Normal</button>
+          <button class="tipo-btn" onclick="selTipo('Prioritário')" id="tipo-Prioritário"><span class="tipo-icon">♿</span>Prioritário</button>
+        </div>
+      </div>
+      <button class="btn btn-primary btn-lg" onclick="emitirSenha()">Emitir Senha</button>`;
+  } else {
+    conteudo.innerHTML=`
+      <div class="modal-servico-list" id="modal-serv-lista">
+        ${servicos.map(sv=>`<div class="servico-opt" onclick="selecionarServico('${sv.id}')">
+          <h4>${sv.nome}</h4>
+          <p>Tempo estimado: ${sv.tempo} min${sv.clienteEscolheFuncionario?' · Você pode escolher o atendente':''}</p>
+        </div>`).join('')}
+      </div>
+      <div id="modal-func-area" style="display:none"></div>
+      <div style="margin-top:16px" id="modal-tipo-area" style="display:none">
+        <div class="card-title">Tipo de atendimento</div>
+        <div class="tipo-grid">
+          <button class="tipo-btn selected" onclick="selTipo('Normal')" id="tipo-Normal"><span class="tipo-icon">🧾</span>Normal</button>
+          <button class="tipo-btn" onclick="selTipo('Prioritário')" id="tipo-Prioritário"><span class="tipo-icon">♿</span>Prioritário</button>
+        </div>
+      </div>
+      <div id="modal-emitir-area" style="display:none;margin-top:16px">
+        <button class="btn btn-primary btn-lg" onclick="emitirSenha()">Emitir Senha</button>
+      </div>`;
+  }
+  document.getElementById('modal-setor').classList.add('open');
+}
+
+function selecionarServico(servicoId){
+  recServicoSelecionado=servicoId;
+  document.querySelectorAll('.servico-opt').forEach(o=>o.style.borderColor='');
+  const sel=DB.servicos.find(s=>s.id===servicoId);
+  // highlight
+  document.querySelectorAll('.servico-opt').forEach(o=>{
+    if(o.querySelector('h4').textContent===sel.nome)o.style.borderColor='var(--accent2)';
+  });
+  // mostrar áreas
+  document.getElementById('modal-tipo-area').style.display='block';
+  document.getElementById('modal-emitir-area').style.display='block';
+  // funcionário escolhível?
+  const funcArea=document.getElementById('modal-func-area');
+  if(sel.clienteEscolheFuncionario){
+    const funcs=DB.funcionarios.filter(f=>f.setorId===recSetorSelecionado&&f.ativo);
+    if(funcs.length){
+      funcArea.style.display='block';
+      funcArea.innerHTML=`<div class="card-title" style="margin-top:12px">Escolha o atendente (opcional)</div>
+        <div class="func-choice-grid">
+          <div class="func-choice-btn" onclick="selFunc(null)" id="fc-auto">
+            <div class="fc-nome">Automático</div>
+            <div class="fc-fila">Próximo disponível</div>
+            <div class="fc-rod" style="color:var(--text3)">Rodízio</div>
+          </div>
+          ${funcs.map(f=>{
+            const naFila=DB.fila.filter(s=>s.funcionarioId===f.id&&s.status==='aguardando').length;
+            return `<div class="func-choice-btn" onclick="selFunc('${f.id}')" id="fc-${f.id}">
+              <div class="fc-nome">${f.nome}</div>
+              <div class="fc-fila">Fila: ${naFila}</div>
+              ${f.rodizio?'<div class="fc-rod">✓ Rodízio</div>':'<div class="fc-rod" style="color:var(--text3)">Fora do rodízio</div>'}
+            </div>`;
+          }).join('')}
+        </div>`;
+    } else funcArea.style.display='none';
+  } else funcArea.style.display='none';
+}
+
+function selFunc(funcId){
+  recFuncSelecionado=funcId;
+  document.querySelectorAll('.func-choice-btn').forEach(b=>b.classList.remove('selected'));
+  const el=document.getElementById(funcId?'fc-'+funcId:'fc-auto');
+  if(el)el.classList.add('selected');
+}
+
 function selTipo(t){
   tipoSelecionado=t;
   document.querySelectorAll('.tipo-btn').forEach(b=>b.classList.remove('selected'));
-  const el=document.getElementById('tipo-'+t); if(el) el.classList.add('selected');
+  const el=document.getElementById('tipo-'+t);if(el)el.classList.add('selected');
 }
-function atualizarServicos(){
-  const sid=document.getElementById('rec-setor').value;
-  const card=document.getElementById('rec-servico-card');
-  const sel=document.getElementById('rec-servico');
-  sel.innerHTML='<option value="">Selecione o serviço...</option>';
-  if(!sid){card.style.display='none';return;}
-  const servs=DB.servicos.filter(s=>s.setorId===sid);
-  if(!servs.length){card.style.display='none';return;}
-  card.style.display='block';
-  servs.forEach(s=>{const o=document.createElement('option');o.value=s.id;o.textContent=s.nome;sel.appendChild(o);});
-}
+
 function emitirSenha(){
-  const sid=document.getElementById('rec-setor').value;
-  const servicoId=document.getElementById('rec-servico').value;
-  if(!sid){alert('Selecione o setor.');return;}
+  const sid=recSetorSelecionado;if(!sid){alert('Selecione o setor.');return;}
   const setor=getSetor(sid);
-  if(!DB.contadores[sid]) DB.contadores[sid]=0;
+  if(!DB.contadores[sid])DB.contadores[sid]=0;
   DB.contadores[sid]++;
   const numero=setor.prefix+String(DB.contadores[sid]).padStart(3,'0');
-  const senha={id:uid(),numero,setorId:sid,servicoId:servicoId||null,tipo:tipoSelecionado,emissao:Date.now(),status:'aguardando',funcionarioId:null};
-  DB.fila.push(senha); salvar();
-  document.getElementById('rec-display').innerHTML=`
+  // rodízio: se nenhum func escolhido e serviço tem escolha, usa rodízio
+  let funcIdAtrib=recFuncSelecionado||null;
+  if(!funcIdAtrib&&recServicoSelecionado){
+    const sv=getServico(recServicoSelecionado);
+    // rodízio automático só pré-atribui na emissão se não há escolha do cliente
+    // deixa null para atendente chamar da fila
+  }
+  const senha={id:uid(),numero,setorId:sid,servicoId:recServicoSelecionado||null,tipo:tipoSelecionado,emissao:Date.now(),status:'aguardando',funcionarioId:funcIdAtrib,funcPreferida:funcIdAtrib};
+  DB.fila.push(senha);salvar();
+  const display=document.getElementById('rec-display');
+  const na=DB.fila.filter(s=>s.setorId===sid&&s.status==='aguardando').length;
+  display.innerHTML=`
     <div style="font-size:13px;color:var(--text3);margin-bottom:6px;text-transform:uppercase;letter-spacing:.08em">Sua senha</div>
     <div class="senha-numero">${numero}</div>
-    <div style="font-size:18px;color:var(--text2);margin-top:8px">${tipoSelecionado}</div>
+    <div style="font-size:17px;color:var(--text2);margin-top:8px">${tipoSelecionado}</div>
     <div style="font-size:14px;color:var(--text3);margin-top:4px">${setor.nome}</div>
-    ${servicoId?`<div style="font-size:13px;color:var(--text3);margin-top:4px">${getServico(servicoId)?.nome||''}</div>`:''}
-    <div style="font-size:13px;color:var(--text3);margin-top:12px">Você é o <strong style="color:var(--text)">#${DB.fila.filter(s=>s.setorId===sid&&s.status==='aguardando').length}°</strong> na fila</div>`;
-  renderFila();
+    ${recServicoSelecionado?`<div style="font-size:13px;color:var(--text3);margin-top:4px">${getServico(recServicoSelecionado)?.nome||''}</div>`:''}
+    ${funcIdAtrib?`<div style="font-size:13px;color:var(--green);margin-top:4px">Atendente: ${getFunc(funcIdAtrib)?.nome||''}</div>`:''}
+    <div style="font-size:13px;color:var(--text3);margin-top:12px">Você é o <strong style="color:var(--text)">#${na}°</strong> na fila</div>`;
+  fecharModalSetor();renderFila();renderSetoresGrid();
 }
+
+function fecharModalSetor(){document.getElementById('modal-setor').classList.remove('open');recSetorSelecionado=null;recServicoSelecionado=null;recFuncSelecionado=null;tipoSelecionado='Normal';}
+
 function renderFila(){
-  const lista=document.getElementById('rec-fila-lista'); if(!lista) return;
+  const lista=document.getElementById('rec-fila-lista');if(!lista)return;
   const ag=DB.fila.filter(s=>s.status==='aguardando');
   if(!ag.length){lista.innerHTML='<span style="color:var(--text3)">Fila vazia</span>';return;}
-  const agr={};
-  ag.forEach(s=>{if(!agr[s.setorId])agr[s.setorId]=[];agr[s.setorId].push(s);});
+  const agr={};ag.forEach(s=>{if(!agr[s.setorId])agr[s.setorId]=[];agr[s.setorId].push(s);});
   lista.innerHTML=Object.entries(agr).map(([sid,senhas])=>{
     const setor=getSetor(sid);
     return `<div style="margin-bottom:10px">
@@ -871,53 +901,47 @@ function renderFila(){
 // ============================================================
 // ATENDENTE
 // ============================================================
-let timerInterval=null, segundosAtend=0;
-
-function getFuncLogado(){ return DB.funcionarioLogadoId ? getFunc(DB.funcionarioLogadoId) : null; }
+let timerInterval=null,segundosAtend=0;
+function getFuncLogado(){return DB.funcionarioLogadoId?getFunc(DB.funcionarioLogadoId):null;}
 
 function chamarProximo(){
-  const func=getFuncLogado();
-  if(!func){alert('Nenhum funcionário vinculado a este usuário.');return;}
-  if(DB.atendimentoAtual) concluirAtendimento(false);
+  const func=getFuncLogado();if(!func){alert('Nenhum funcionário vinculado.');return;}
+  if(DB.atendimentoAtual)concluirAtendimento(false);
   const sid=func.setorId;
-  let idx=DB.fila.findIndex(s=>s.setorId===sid&&s.status==='aguardando'&&s.tipo==='Prioritário');
-  if(idx===-1) idx=DB.fila.findIndex(s=>s.setorId===sid&&s.status==='aguardando');
+  // preferência: senha com funcPreferida === este funcionário
+  let idx=DB.fila.findIndex(s=>s.setorId===sid&&s.status==='aguardando'&&s.funcPreferida===func.id);
+  // prioritário sem preferência
+  if(idx===-1)idx=DB.fila.findIndex(s=>s.setorId===sid&&s.status==='aguardando'&&s.tipo==='Prioritário'&&!s.funcPreferida);
+  // geral
+  if(idx===-1)idx=DB.fila.findIndex(s=>s.setorId===sid&&s.status==='aguardando'&&!s.funcPreferida);
+  // qualquer
+  if(idx===-1)idx=DB.fila.findIndex(s=>s.setorId===sid&&s.status==='aguardando');
   if(idx===-1){alert('Não há senhas na fila do seu setor.');return;}
   const senha=DB.fila[idx];
-  senha.status='em_atendimento'; senha.funcionarioId=func.id; senha.inicioAtendimento=Date.now();
+  senha.status='em_atendimento';senha.funcionarioId=func.id;senha.inicioAtendimento=Date.now();
   DB.atendimentoAtual={senhaId:senha.id,inicio:Date.now()};
   DB.painel.historico.unshift({num:senha.numero,func:func.nome,hora:new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})});
-  if(DB.painel.historico.length>6) DB.painel.historico.pop();
+  if(DB.painel.historico.length>6)DB.painel.historico.pop();
   DB.painel.ultimo={numero:senha.numero,guiche:func.guiche,setorNome:getSetor(sid)?.nome};
-  anunciarSenha(senha); salvar();
-  iniciarTimer(); renderAll();
+  anunciarSenha(senha);salvar();iniciarTimer();renderAll();
 }
+
 function iniciarTimer(){
-  clearInterval(timerInterval); segundosAtend=0;
-  timerInterval=setInterval(()=>{
-    if(!DB.atendimentoAtual){clearInterval(timerInterval);return;}
-    segundosAtend=Math.floor((Date.now()-DB.atendimentoAtual.inicio)/1000);
-    atualizarTimerUI();
-  },1000);
+  clearInterval(timerInterval);segundosAtend=0;
+  timerInterval=setInterval(()=>{if(!DB.atendimentoAtual){clearInterval(timerInterval);return;}segundosAtend=Math.floor((Date.now()-DB.atendimentoAtual.inicio)/1000);atualizarTimerUI();},1000);
 }
 function atualizarTimerUI(){
-  const el=document.getElementById('at-timer'),prog=document.getElementById('at-progress');
-  if(!el) return;
+  const el=document.getElementById('at-timer'),prog=document.getElementById('at-progress');if(!el)return;
   el.textContent=fmt(segundosAtend);
   const pct=Math.min((segundosAtend/480)*100,100);
   if(prog){prog.style.width=pct+'%';prog.style.background=pct<75?'#22c55e':pct<100?'#f59e0b':'#ef4444';}
   el.className='atend-timer '+(segundosAtend<360?'timer-normal':segundosAtend<480?'timer-warn':'timer-danger');
 }
 function concluirAtendimento(abrirModal=true){
-  if(!DB.atendimentoAtual) return;
+  if(!DB.atendimentoAtual)return;
   clearInterval(timerInterval);
   const senha=DB.fila.find(s=>s.id===DB.atendimentoAtual.senhaId);
-  if(senha){
-    senha.status='concluido'; senha.fimAtendimento=Date.now();
-    senha.tma=Math.floor((senha.fimAtendimento-senha.inicioAtendimento)/1000);
-    senha.tme=Math.floor((senha.inicioAtendimento-senha.emissao)/1000);
-    DB.historico.push({...senha});
-  }
+  if(senha){senha.status='concluido';senha.fimAtendimento=Date.now();senha.tma=Math.floor((senha.fimAtendimento-senha.inicioAtendimento)/1000);senha.tme=Math.floor((senha.inicioAtendimento-senha.emissao)/1000);DB.historico.push({...senha});}
   const func=getFuncLogado();
   if(abrirModal&&senha){
     DB.avalPendente={senhaId:senha.id};
@@ -928,23 +952,18 @@ function concluirAtendimento(abrirModal=true){
     document.getElementById('btn-confirmar-aval').disabled=true;
     document.getElementById('modal-aval').classList.add('open');
   }
-  DB.atendimentoAtual=null; salvar(); renderAll();
+  DB.atendimentoAtual=null;salvar();renderAll();
 }
 function cancelarSenha(){
-  if(!DB.atendimentoAtual) return;
-  clearInterval(timerInterval);
-  const s=DB.fila.find(s=>s.id===DB.atendimentoAtual.senhaId);
-  if(s) s.status='cancelado';
-  DB.atendimentoAtual=null; salvar(); renderAll();
+  if(!DB.atendimentoAtual)return;clearInterval(timerInterval);
+  const s=DB.fila.find(s=>s.id===DB.atendimentoAtual.senhaId);if(s)s.status='cancelado';
+  DB.atendimentoAtual=null;salvar();renderAll();
 }
 function renderAtendente(){
   const func=getFuncLogado();
-  if(!func){
-    document.getElementById('atend-nome-display').textContent='Nenhum funcionário vinculado';
-    return;
-  }
+  if(!func){document.getElementById('atend-nome-display').textContent='Nenhum funcionário vinculado';return;}
   document.getElementById('atend-nome-display').textContent=`${func.nome} · ${func.guiche} · ${getSetor(func.setorId)?.nome||''}`;
-  const hoje=new Date(); hoje.setHours(0,0,0,0);
+  const hoje=new Date();hoje.setHours(0,0,0,0);
   const atend=DB.historico.filter(s=>s.funcionarioId===func.id&&s.fimAtendimento>=hoje.getTime());
   const mediaTMA=atend.length?Math.round(atend.reduce((a,s)=>a+s.tma,0)/atend.length):0;
   const mediaTME=atend.length?Math.round(atend.reduce((a,s)=>a+s.tme,0)/atend.length):0;
@@ -961,12 +980,14 @@ function renderAtendente(){
   document.getElementById('at-senha-info').textContent=atual?(atual.tipo+(getServico(atual.servicoId)?'  ·  '+getServico(atual.servicoId).nome:'')):'Nenhuma senha em atendimento';
   document.getElementById('at-senha-setor').textContent=atual?(getSetor(atual.setorId)?.nome||''):'';
   if(!atual){document.getElementById('at-timer').textContent='00:00';document.getElementById('at-progress').style.width='0%';}
-  const lista=document.getElementById('at-fila-lista'); if(!lista) return;
+  const lista=document.getElementById('at-fila-lista');if(!lista)return;
   const filaSetor=DB.fila.filter(s=>s.setorId===func.setorId&&s.status==='aguardando');
   lista.innerHTML=filaSetor.length?filaSetor.map(s=>{
     const esp=Math.floor((Date.now()-s.emissao)/1000);
+    const prefFunc=s.funcPreferida===func.id?'<span class="badge badge-green" style="font-size:10px">Para você</span>':'';
     return `<div class="flex-between" style="padding:8px 0;border-bottom:1px solid var(--border)">
       <span class="badge ${s.tipo==='Prioritário'?'badge-amber':'badge-blue'}">${s.numero}</span>
+      ${prefFunc}
       <span style="font-size:13px;color:var(--text2)">${s.tipo}</span>
       <span style="font-size:12px;color:var(--text3)">${getServico(s.servicoId)?.nome||'—'}</span>
       <span style="font-size:12px;color:var(--text3)">Aguarda: ${fmt(esp)}</span>
@@ -980,38 +1001,36 @@ function renderAtendente(){
 function renderPainel(){
   const p=DB.painel;
   if(p.ultimo){
-    document.getElementById('painel-num').textContent=p.ultimo.numero;
+    const numEl=document.getElementById('painel-num');
+    numEl.textContent=p.ultimo.numero;
+    numEl.classList.remove('chamando');void numEl.offsetWidth;numEl.classList.add('chamando');
     document.getElementById('painel-guiche').textContent=p.ultimo.guiche;
     document.getElementById('painel-setor-tv').textContent=p.ultimo.setorNome||'';
   }
-  // proximas
   const prox=DB.fila.filter(s=>s.status==='aguardando').slice(0,4);
   document.getElementById('painel-proximas').innerHTML=prox.map(s=>`
-    <div class="painel-fila-item ${s.tipo==='Prioritário'?'pfi-prio':''}">
+    <div class="pfi ${s.tipo==='Prioritário'?'prio':''}">
       <div class="pfi-num">${s.numero}</div>
       <div class="pfi-info">
-        <div style="font-size:12px;color:var(--cream2)">${getSetor(s.setorId)?.nome||''}</div>
+        <div class="pfi-setor">${getSetor(s.setorId)?.nome||''}</div>
         <div class="pfi-tipo">${s.tipo}</div>
       </div>
-    </div>`).join('')||'<div style="font-size:13px;color:var(--text3);padding:8px 0">Fila vazia</div>';
-  // historico
+    </div>`).join('')||'<div style="font-size:14px;color:rgba(201,168,76,0.3);padding:8px 0">Fila vazia</div>';
   document.getElementById('painel-historico').innerHTML=(p.historico||[]).map(h=>`
     <div class="painel-hist-row">
       <div class="painel-hist-num">${h.num}</div>
       <div class="painel-hist-func">${h.func||''}</div>
       <div class="painel-hist-hora">${h.hora||''}</div>
     </div>`).join('');
-  // contadores
-  const totalDia=document.getElementById('painel-total-dia');
-  const emFila=document.getElementById('painel-em-fila');
-  if(totalDia) totalDia.textContent=DB.historico.length;
-  if(emFila) emFila.textContent=DB.fila.filter(s=>s.status==='aguardando').length;
+  const td=document.getElementById('painel-total-dia');const ef=document.getElementById('painel-em-fila');
+  if(td)td.textContent=DB.historico.length;
+  if(ef)ef.textContent=DB.fila.filter(s=>s.status==='aguardando').length;
 }
 
 // ============================================================
 // GESTOR
 // ============================================================
-let chartHora=null, chartSetor=null;
+let chartHora=null,chartSetor=null;
 function renderGestor(){
   const filtro=document.getElementById('gest-setor-filtro')?.value||'';
   const hist=filtro?DB.historico.filter(s=>s.setorId===filtro):DB.historico;
@@ -1026,7 +1045,6 @@ function renderGestor(){
   document.getElementById('g-sat').textContent=nota||'—';
   document.getElementById('g-tma-card').className='met '+(mediaTMA>480?'red':mediaTMA>0?'green':'');
   document.getElementById('g-tme-card').className='met '+(mediaTME>600?'red':mediaTME>0?'green':'');
-  // tabela funcionários
   document.getElementById('gest-func-body').innerHTML=DB.funcionarios.filter(f=>!filtro||f.setorId===filtro).map(f=>{
     const at=hist.filter(s=>s.funcionarioId===f.id);
     const tma=at.length?Math.round(at.reduce((a,s)=>a+s.tma,0)/at.length):0;
@@ -1034,9 +1052,9 @@ function renderGestor(){
     const av2=at.filter(s=>s.avaliacao!=null);
     const n2=av2.length?(av2.reduce((a,s)=>a+s.avaliacao,0)/av2.length).toFixed(1):null;
     const st=tma>480?'<span class="badge badge-red">Acima da meta</span>':at.length>0?'<span class="badge badge-green">Dentro da meta</span>':'<span class="badge">—</span>';
-    return `<tr><td style="font-weight:500;color:var(--text)">${f.nome} <small style="color:var(--text3)">${f.guiche}</small></td><td>${getSetor(f.setorId)?.nome||'—'}</td><td style="color:var(--accent);font-family:var(--mono)">${at.length}</td><td style="font-family:var(--mono);color:${tma>480?'#ef4444':tma>0?'#22c55e':'var(--text2)'}">${fmt(tma)}</td><td style="font-family:var(--mono);color:${tme>600?'#ef4444':tme>0?'#22c55e':'var(--text2)'}">${fmt(tme)}</td><td>${starsHtml(n2)}</td><td>${st}</td></tr>`;
+    const rod=f.rodizio?'<span class="badge badge-blue" style="font-size:10px">Rodízio</span>':'';
+    return `<tr><td style="font-weight:500;color:var(--text)">${f.nome} <small style="color:var(--text3)">${f.guiche}</small> ${rod}</td><td>${getSetor(f.setorId)?.nome||'—'}</td><td style="color:var(--accent);font-family:var(--mono)">${at.length}</td><td style="font-family:var(--mono);color:${tma>480?'#ef4444':tma>0?'#22c55e':'var(--text2)'}">${fmt(tma)}</td><td style="font-family:var(--mono);color:${tme>600?'#ef4444':tme>0?'#22c55e':'var(--text2)'}">${fmt(tme)}</td><td>${starsHtml(n2)}</td><td>${st}</td></tr>`;
   }).join('')||'<tr><td colspan="7" style="color:var(--text3);text-align:center">Nenhum dado</td></tr>';
-  // historico
   document.getElementById('gest-historico-body').innerHTML=[...hist].reverse().slice(0,20).map(s=>{
     const hora=new Date(s.fimAtendimento).toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
     return `<tr><td><span class="badge badge-blue">${s.numero}</span></td><td>${getSetor(s.setorId)?.nome||'—'}</td><td>${getServico(s.servicoId)?.nome||'—'}</td><td>${getFunc(s.funcionarioId)?.nome||'—'}</td><td style="font-family:var(--mono);color:${s.tme>600?'#ef4444':'#22c55e'}">${fmt(s.tme)}</td><td style="font-family:var(--mono);color:${s.tma>480?'#ef4444':'#22c55e'}">${fmt(s.tma)}</td><td>${starsHtml(s.avaliacao?.toString())}</td><td style="font-family:var(--mono);font-size:12px">${hora}</td></tr>`;
@@ -1044,18 +1062,13 @@ function renderGestor(){
   renderCharts(hist);
 }
 function renderCharts(hist){
-  const horas=Array(24).fill(0);
-  hist.forEach(s=>{if(s.fimAtendimento) horas[new Date(s.fimAtendimento).getHours()]++;});
-  if(chartHora) chartHora.destroy();
+  const horas=Array(24).fill(0);hist.forEach(s=>{if(s.fimAtendimento)horas[new Date(s.fimAtendimento).getHours()]++;});
+  if(chartHora)chartHora.destroy();
   const ctx1=document.getElementById('chart-hora')?.getContext('2d');
-  if(ctx1) chartHora=new Chart(ctx1,{type:'bar',data:{labels:Array.from({length:24},(_,i)=>String(i).padStart(2,'0')+':00'),datasets:[{label:'Atendimentos',data:horas,backgroundColor:'rgba(79,142,247,0.5)',borderColor:'#4f8ef7',borderWidth:1}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:'#5c6278',font:{size:10}},grid:{color:'rgba(255,255,255,0.04)'}},y:{ticks:{color:'#5c6278'},grid:{color:'rgba(255,255,255,0.04)'}}}}});
-  if(chartSetor) chartSetor.destroy();
+  if(ctx1)chartHora=new Chart(ctx1,{type:'bar',data:{labels:Array.from({length:24},(_,i)=>String(i).padStart(2,'0')+':00'),datasets:[{label:'Atendimentos',data:horas,backgroundColor:'rgba(79,142,247,0.5)',borderColor:'#4f8ef7',borderWidth:1}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:'#5c6278',font:{size:10}},grid:{color:'rgba(255,255,255,0.04)'}},y:{ticks:{color:'#5c6278'},grid:{color:'rgba(255,255,255,0.04)'}}}}});
+  if(chartSetor)chartSetor.destroy();
   const ctx2=document.getElementById('chart-setor')?.getContext('2d');
-  if(ctx2){
-    const nomes=DB.setores.map(s=>s.nome);
-    const notas=DB.setores.map(s=>{const av=hist.filter(h=>h.setorId===s.id&&h.avaliacao!=null);return av.length?parseFloat((av.reduce((a,h)=>a+h.avaliacao,0)/av.length).toFixed(1)):0;});
-    chartSetor=new Chart(ctx2,{type:'bar',data:{labels:nomes,datasets:[{label:'Satisfação (0-5)',data:notas,backgroundColor:DB.setores.map(s=>s.cor+'aa'),borderColor:DB.setores.map(s=>s.cor),borderWidth:1}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:'#5c6278'},grid:{color:'rgba(255,255,255,0.04)'}},y:{min:0,max:5,ticks:{color:'#5c6278'},grid:{color:'rgba(255,255,255,0.04)'}}}}});
-  }
+  if(ctx2){const nomes=DB.setores.map(s=>s.nome);const notas=DB.setores.map(s=>{const a=hist.filter(h=>h.setorId===s.id&&h.avaliacao!=null);return a.length?parseFloat((a.reduce((x,h)=>x+h.avaliacao,0)/a.length).toFixed(1)):0;});chartSetor=new Chart(ctx2,{type:'bar',data:{labels:nomes,datasets:[{label:'Satisfação (0-5)',data:notas,backgroundColor:DB.setores.map(s=>s.cor+'99'),borderColor:DB.setores.map(s=>s.cor),borderWidth:1}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:'#5c6278'},grid:{color:'rgba(255,255,255,0.04)'}},y:{min:0,max:5,ticks:{color:'#5c6278'},grid:{color:'rgba(255,255,255,0.04)'}}}}});}
 }
 
 // ============================================================
@@ -1070,20 +1083,18 @@ function selecionarAval(nota){
   document.getElementById('btn-confirmar-aval').disabled=false;
 }
 function confirmarAval(){
-  if(notaSelecionada==null||!DB.avalPendente) return;
-  const h=DB.historico.find(s=>s.id===DB.avalPendente.senhaId);
-  if(h) h.avaliacao=notaSelecionada;
-  const f=DB.fila.find(s=>s.id===DB.avalPendente.senhaId);
-  if(f) f.avaliacao=notaSelecionada;
-  DB.avalPendente=null; salvar(); fecharAval(); renderAll();
+  if(notaSelecionada==null||!DB.avalPendente)return;
+  const h=DB.historico.find(s=>s.id===DB.avalPendente.senhaId);if(h)h.avaliacao=notaSelecionada;
+  const f=DB.fila.find(s=>s.id===DB.avalPendente.senhaId);if(f)f.avaliacao=notaSelecionada;
+  DB.avalPendente=null;salvar();fecharAval();renderAll();
 }
-function fecharAval(){ document.getElementById('modal-aval').classList.remove('open'); notaSelecionada=null; DB.avalPendente=null; }
+function fecharAval(){document.getElementById('modal-aval').classList.remove('open');notaSelecionada=null;DB.avalPendente=null;}
 
 // ============================================================
-// RELATÓRIO
+// RELATÓRIO — fundo branco legível
 // ============================================================
 function gerarRelatorio(){
-  const hist=DB.historico, hoje=new Date(), total=hist.length;
+  const hist=DB.historico,hoje=new Date(),total=hist.length;
   const mediaTMA=total?Math.round(hist.reduce((a,s)=>a+s.tma,0)/total):0;
   const mediaTME=total?Math.round(hist.reduce((a,s)=>a+s.tme,0)/total):0;
   const av=hist.filter(s=>s.avaliacao!=null);
@@ -1091,190 +1102,226 @@ function gerarRelatorio(){
   const pctSat=av.length?Math.round((av.filter(s=>s.avaliacao>=4).length/av.length)*100):0;
   const pctTMA=total?Math.round((hist.filter(s=>s.tma<=480).length/total)*100):0;
   const pctTME=total?Math.round((hist.filter(s=>s.tme<=600).length/total)*100):0;
-  const setorRows=DB.setores.map(s=>{
+  const trStyle='border-bottom:1px solid #e5e7eb;';
+  const thStyle='background:#8B6914;color:#fff;padding:10px 12px;text-align:left;font-size:13px;';
+  const tdStyle='padding:9px 12px;color:#374151;font-size:13px;';
+  const tdAlt='padding:9px 12px;color:#374151;font-size:13px;background:#f9f7f2;';
+  const setorRows=DB.setores.map((s,i)=>{
     const a=hist.filter(h=>h.setorId===s.id);
     const tma=a.length?Math.round(a.reduce((x,h)=>x+h.tma,0)/a.length):0;
     const av2=a.filter(h=>h.avaliacao!=null);
     const n=av2.length?(av2.reduce((x,h)=>x+h.avaliacao,0)/av2.length).toFixed(1):'—';
-    return `<tr style="border-bottom:1px solid #ddd"><td style="padding:8px 10px">${s.nome}</td><td style="padding:8px 10px;text-align:center">${a.length}</td><td style="padding:8px 10px;text-align:center;font-family:monospace">${fmt(tma)}</td><td style="padding:8px 10px;text-align:center">${n}</td></tr>`;
+    const td=i%2?tdAlt:tdStyle;
+    return `<tr style="${trStyle}"><td style="${td}">${s.nome}</td><td style="${td}text-align:center">${a.length}</td><td style="${td}text-align:center;font-family:monospace">${fmt(tma)}</td><td style="${td}text-align:center">${n}</td></tr>`;
   }).join('');
-  const funcRows=DB.funcionarios.map(f=>{
+  const funcRows=DB.funcionarios.map((f,i)=>{
     const a=hist.filter(h=>h.funcionarioId===f.id);
     const tma=a.length?Math.round(a.reduce((x,h)=>x+h.tma,0)/a.length):0;
     const tme=a.length?Math.round(a.reduce((x,h)=>x+h.tme,0)/a.length):0;
     const av2=a.filter(h=>h.avaliacao!=null);
     const n=av2.length?(av2.reduce((x,h)=>x+h.avaliacao,0)/av2.length).toFixed(1):'—';
     const meta=tma>0?(tma<=480?'✅ Dentro':'❌ Acima'):'—';
-    return `<tr style="border-bottom:1px solid #ddd"><td style="padding:8px 10px">${f.nome}</td><td style="padding:8px 10px">${f.guiche}</td><td style="padding:8px 10px">${getSetor(f.setorId)?.nome||'—'}</td><td style="padding:8px 10px;text-align:center">${a.length}</td><td style="padding:8px 10px;text-align:center;font-family:monospace">${fmt(tma)}</td><td style="padding:8px 10px;text-align:center;font-family:monospace">${fmt(tme)}</td><td style="padding:8px 10px;text-align:center">${n}</td><td style="padding:8px 10px;text-align:center">${meta}</td></tr>`;
+    const td=i%2?tdAlt:tdStyle;
+    return `<tr style="${trStyle}"><td style="${td}">${f.nome}</td><td style="${td}">${f.guiche}</td><td style="${td}">${getSetor(f.setorId)?.nome||'—'}</td><td style="${td}text-align:center">${a.length}</td><td style="${td}text-align:center;font-family:monospace">${fmt(tma)}</td><td style="${td}text-align:center;font-family:monospace">${fmt(tme)}</td><td style="${td}text-align:center">${n}</td><td style="${td}text-align:center">${meta}</td></tr>`;
   }).join('');
-  const html=`<div style="font-family:Arial,sans-serif;color:#111;font-size:13px">
-    <div style="text-align:center;border-bottom:3px solid #8B6914;padding-bottom:16px;margin-bottom:20px">
-      <div style="font-size:24px;font-weight:bold;font-family:Georgia,serif">RELATÓRIO DE AUDITORIA DE ATENDIMENTO</div>
-      <div style="font-size:13px;color:#8B6914;margin-top:6px;letter-spacing:2px">ISO 9001 · ABNT NBR · PQTA</div>
-      <div style="font-size:12px;color:#777;margin-top:8px">Emitido em: ${hoje.toLocaleString('pt-BR')}</div>
+  const conform=(ok,txt)=>`<tr style="${trStyle}"><td style="${tdStyle}">${txt}</td><td style="${tdStyle};font-weight:600">${ok?'✅ Conforme':'❌ Não conforme'}</td></tr>`;
+  const html=`<div style="font-family:Arial,sans-serif;color:#111;font-size:13px;background:#fff;">
+    <div style="text-align:center;padding-bottom:18px;margin-bottom:20px;border-bottom:3px solid #8B6914;">
+      <div style="font-size:24px;font-weight:bold;font-family:Georgia,serif;color:#111">RELATÓRIO DE AUDITORIA DE ATENDIMENTO</div>
+      <div style="font-size:13px;color:#8B6914;margin-top:6px;letter-spacing:2px;font-weight:600">SENA — Sistema Eletrônico Notarial de Apoio</div>
+      <div style="font-size:12px;color:#8B6914;margin-top:4px;letter-spacing:1px">ISO 9001 · ABNT NBR · PQTA</div>
+      <div style="font-size:12px;color:#6b7280;margin-top:10px">Emitido em: ${hoje.toLocaleString('pt-BR')}</div>
     </div>
-    <div style="background:#faf8f3;border:1px solid #ddd;border-left:4px solid #c9a84c;border-radius:6px;padding:16px;margin-bottom:20px">
-      <div style="font-weight:bold;font-size:14px;margin-bottom:10px;color:#8B6914">1. INDICADORES GERAIS</div>
+    <div style="background:#faf8f2;border:1px solid #e5c86a;border-left:5px solid #8B6914;border-radius:6px;padding:16px 20px;margin-bottom:20px;">
+      <div style="font-weight:bold;font-size:15px;margin-bottom:12px;color:#8B6914">1. INDICADORES GERAIS</div>
       <table style="width:100%;border-collapse:collapse">
-        <tr><td style="padding:6px 10px;color:#555">Total de atendimentos</td><td style="padding:6px 10px;font-weight:bold">${total}</td></tr>
-        <tr style="background:#fff"><td style="padding:6px 10px;color:#555">Tempo Médio de Atendimento (TMA)</td><td style="padding:6px 10px;font-weight:bold;font-family:monospace">${fmt(mediaTMA)} <span style="font-weight:normal;color:#555">(Meta: 08:00)</span></td></tr>
-        <tr><td style="padding:6px 10px;color:#555">Tempo Médio de Espera (TME)</td><td style="padding:6px 10px;font-weight:bold;font-family:monospace">${fmt(mediaTME)} <span style="font-weight:normal;color:#555">(Meta: 10:00)</span></td></tr>
-        <tr style="background:#fff"><td style="padding:6px 10px;color:#555">Índice de satisfação médio</td><td style="padding:6px 10px;font-weight:bold">${mediaAval}/5.0</td></tr>
-        <tr><td style="padding:6px 10px;color:#555">% Clientes satisfeitos (nota ≥ 4)</td><td style="padding:6px 10px;font-weight:bold">${pctSat}%</td></tr>
-        <tr style="background:#fff"><td style="padding:6px 10px;color:#555">% Atendimentos dentro do TMA</td><td style="padding:6px 10px;font-weight:bold">${pctTMA}%</td></tr>
-        <tr><td style="padding:6px 10px;color:#555">% Atendimentos dentro do TME</td><td style="padding:6px 10px;font-weight:bold">${pctTME}%</td></tr>
-        <tr style="background:#fff"><td style="padding:6px 10px;color:#555">Total de avaliações coletadas</td><td style="padding:6px 10px;font-weight:bold">${av.length}</td></tr>
+        <tr style="${trStyle}"><td style="${tdStyle}color:#6b7280">Total de atendimentos</td><td style="${tdStyle}font-weight:600">${total}</td></tr>
+        <tr style="${trStyle}"><td style="${tdAlt}color:#6b7280">TMA — Tempo Médio de Atendimento</td><td style="${tdAlt}font-weight:600;font-family:monospace">${fmt(mediaTMA)} <span style="font-weight:400;color:#6b7280">(Meta: 08:00)</span></td></tr>
+        <tr style="${trStyle}"><td style="${tdStyle}color:#6b7280">TME — Tempo Médio de Espera</td><td style="${tdStyle}font-weight:600;font-family:monospace">${fmt(mediaTME)} <span style="font-weight:400;color:#6b7280">(Meta: 10:00)</span></td></tr>
+        <tr style="${trStyle}"><td style="${tdAlt}color:#6b7280">Índice de satisfação médio</td><td style="${tdAlt}font-weight:600">${mediaAval}/5.0</td></tr>
+        <tr style="${trStyle}"><td style="${tdStyle}color:#6b7280">% Clientes satisfeitos (nota ≥ 4)</td><td style="${tdStyle}font-weight:600">${pctSat}%</td></tr>
+        <tr style="${trStyle}"><td style="${tdAlt}color:#6b7280">% Atendimentos dentro do TMA</td><td style="${tdAlt}font-weight:600">${pctTMA}%</td></tr>
+        <tr style="${trStyle}"><td style="${tdStyle}color:#6b7280">% Atendimentos dentro do TME</td><td style="${tdStyle}font-weight:600">${pctTME}%</td></tr>
+        <tr><td style="${tdAlt}color:#6b7280">Avaliações coletadas</td><td style="${tdAlt}font-weight:600">${av.length}</td></tr>
       </table>
     </div>
     <div style="margin-bottom:20px">
-      <div style="font-weight:bold;font-size:14px;margin-bottom:10px;color:#8B6914">2. DESEMPENHO POR SETOR</div>
-      <table style="width:100%;border-collapse:collapse;border:1px solid #ddd">
-        <thead style="background:#8B6914;color:#fff"><tr><th style="padding:8px 10px;text-align:left">Setor</th><th style="padding:8px 10px;text-align:center">Atendimentos</th><th style="padding:8px 10px;text-align:center">TMA médio</th><th style="padding:8px 10px;text-align:center">Satisfação</th></tr></thead>
-        <tbody>${setorRows||'<tr><td colspan="4" style="padding:10px;text-align:center;color:#777">Sem dados</td></tr>'}</tbody>
+      <div style="font-weight:bold;font-size:15px;margin-bottom:10px;color:#8B6914">2. DESEMPENHO POR SETOR</div>
+      <table style="width:100%;border-collapse:collapse;border:1px solid #e5e7eb;border-radius:6px;overflow:hidden">
+        <thead><tr><th style="${thStyle}">Setor</th><th style="${thStyle}text-align:center">Atendimentos</th><th style="${thStyle}text-align:center">TMA médio</th><th style="${thStyle}text-align:center">Satisfação</th></tr></thead>
+        <tbody>${setorRows||`<tr><td colspan="4" style="${tdStyle}text-align:center;color:#9ca3af">Sem dados</td></tr>`}</tbody>
       </table>
     </div>
     <div style="margin-bottom:20px">
-      <div style="font-weight:bold;font-size:14px;margin-bottom:10px;color:#8B6914">3. DESEMPENHO POR FUNCIONÁRIO</div>
-      <table style="width:100%;border-collapse:collapse;border:1px solid #ddd">
-        <thead style="background:#8B6914;color:#fff"><tr><th style="padding:8px 10px;text-align:left">Nome</th><th style="padding:8px;text-align:left">Guichê</th><th style="padding:8px;text-align:left">Setor</th><th style="padding:8px;text-align:center">Atend.</th><th style="padding:8px;text-align:center">TMA</th><th style="padding:8px;text-align:center">TME</th><th style="padding:8px;text-align:center">Aval.</th><th style="padding:8px;text-align:center">Meta TMA</th></tr></thead>
-        <tbody>${funcRows||'<tr><td colspan="8" style="padding:10px;text-align:center;color:#777">Sem dados</td></tr>'}</tbody>
+      <div style="font-weight:bold;font-size:15px;margin-bottom:10px;color:#8B6914">3. DESEMPENHO POR FUNCIONÁRIO</div>
+      <table style="width:100%;border-collapse:collapse;border:1px solid #e5e7eb">
+        <thead><tr><th style="${thStyle}">Nome</th><th style="${thStyle}">Guichê</th><th style="${thStyle}">Setor</th><th style="${thStyle}text-align:center">Atend.</th><th style="${thStyle}text-align:center">TMA</th><th style="${thStyle}text-align:center">TME</th><th style="${thStyle}text-align:center">Aval.</th><th style="${thStyle}text-align:center">Meta TMA</th></tr></thead>
+        <tbody>${funcRows||`<tr><td colspan="8" style="${tdStyle}text-align:center;color:#9ca3af">Sem dados</td></tr>`}</tbody>
       </table>
     </div>
-    <div style="background:#faf8f3;border:1px solid #ddd;border-left:4px solid #c9a84c;border-radius:6px;padding:16px;margin-bottom:20px">
-      <div style="font-weight:bold;font-size:14px;margin-bottom:10px;color:#8B6914">4. CONFORMIDADE COM NORMAS</div>
+    <div style="background:#faf8f2;border:1px solid #e5c86a;border-left:5px solid #8B6914;border-radius:6px;padding:16px 20px;margin-bottom:20px">
+      <div style="font-weight:bold;font-size:15px;margin-bottom:12px;color:#8B6914">4. CONFORMIDADE COM NORMAS</div>
       <table style="width:100%;border-collapse:collapse">
-        <tr><td style="padding:6px 10px">ISO 9001 — Foco no cliente (satisfação ≥ 4.0)</td><td style="padding:6px 10px;font-weight:bold">${parseFloat(mediaAval)>=4?'✅ Conforme':'❌ Não conforme'}</td></tr>
-        <tr style="background:#fff"><td style="padding:6px 10px">PQTA — TMA dentro da meta (≥ 80% dos atendimentos)</td><td style="padding:6px 10px;font-weight:bold">${pctTMA>=80?'✅ Conforme':'❌ Não conforme'}</td></tr>
-        <tr><td style="padding:6px 10px">ABNT — TME dentro da meta (≥ 80% dos atendimentos)</td><td style="padding:6px 10px;font-weight:bold">${pctTME>=80?'✅ Conforme':'❌ Não conforme'}</td></tr>
+        ${conform(parseFloat(mediaAval)>=4,'ISO 9001 — Foco no cliente (satisfação média ≥ 4.0)')}
+        ${conform(pctTMA>=80,'PQTA — TMA dentro da meta (≥ 80% dos atendimentos)')}
+        ${conform(pctTME>=80,'ABNT — TME dentro da meta (≥ 80% dos atendimentos)')}
       </table>
     </div>
-    <div style="border-top:1px solid #ddd;padding-top:12px;margin-top:12px;font-size:11px;color:#777;text-align:center;font-family:Georgia,serif">
-      Documento gerado automaticamente pelo sistema SenhaControl · ${hoje.toLocaleString('pt-BR')} · Uso exclusivo para auditoria interna
+    <div style="border-top:2px solid #8B6914;padding-top:12px;margin-top:16px;display:flex;justify-content:space-between;align-items:flex-end">
+      <div style="font-size:11px;color:#6b7280;font-family:Georgia,serif">Desenvolvido por Marcelo Sena de Moraes · Senasis Tecnologia · SENA v2.0</div>
+      <div style="font-size:11px;color:#6b7280">Gerado em ${hoje.toLocaleString('pt-BR')} · Uso exclusivo para auditoria interna</div>
     </div>
   </div>`;
   document.getElementById('relatorio-conteudo').innerHTML=html;
   document.getElementById('rel-periodo').textContent='Gerado em '+hoje.toLocaleString('pt-BR');
   document.getElementById('modal-relatorio').classList.add('open');
 }
-function fecharRelatorio(){ document.getElementById('modal-relatorio').classList.remove('open'); }
+function fecharRelatorio(){document.getElementById('modal-relatorio').classList.remove('open');}
 function imprimirRelatorio(){
   const c=document.getElementById('relatorio-conteudo').innerHTML;
   const w=window.open('','_blank');
-  w.document.write(`<!DOCTYPE html><html><head><title>Relatório SenhaControl</title></head><body style="font-family:Arial,sans-serif;margin:24px">${c}</body></html>`);
-  w.document.close(); w.print();
+  w.document.write(`<!DOCTYPE html><html><head><title>Relatório SENA</title><style>body{font-family:Arial,sans-serif;margin:24px;background:#fff;color:#111}</style></head><body>${c}</body></html>`);
+  w.document.close();w.print();
 }
 
 // ============================================================
 // CADASTROS
 // ============================================================
+let servFuncFlag=false;
+function toggleServFuncFlag(){
+  servFuncFlag=!servFuncFlag;
+  const t=document.getElementById('toggle-serv-func');
+  if(t)t.classList.toggle('on',servFuncFlag);
+}
+
+// Toggle rodízio no form de funcionário
+let funcRodizioFlag=true;
+document.addEventListener('DOMContentLoaded',()=>{
+  const tog=document.getElementById('toggle-rod');
+  if(tog)tog.addEventListener('click',()=>{funcRodizioFlag=!funcRodizioFlag;tog.classList.toggle('on',funcRodizioFlag);});
+});
+
+function toggleUsrFuncWrap(){
+  const p=document.getElementById('cad-usr-perfil')?.value;
+  const w=document.getElementById('cad-usr-func-wrap');
+  if(w)w.style.display=p==='atendente'?'block':'none';
+}
+
 function showTab(id){
   ['tab-setores','tab-funcionarios','tab-servicos','tab-usuarios'].forEach(t=>{
     document.getElementById(t).style.display=t===id?'block':'none';
   });
-  document.querySelectorAll('.tab-item').forEach((t,i)=>{
-    t.classList.toggle('active',['tab-setores','tab-funcionarios','tab-servicos','tab-usuarios'][i]===id);
-  });
+  document.querySelectorAll('.tab-item').forEach((t,i)=>t.classList.toggle('active',['tab-setores','tab-funcionarios','tab-servicos','tab-usuarios'][i]===id));
 }
+
 function addSetor(){
   const nome=document.getElementById('cad-setor-nome').value.trim();
   const prefix=document.getElementById('cad-setor-prefix').value.trim().toUpperCase();
   const cor=document.getElementById('cad-setor-cor').value;
   if(!nome||!prefix){alert('Preencha nome e prefixo.');return;}
-  const id='s'+uid(); DB.setores.push({id,nome,prefix,cor}); DB.contadores[id]=0;
-  document.getElementById('cad-setor-nome').value=''; document.getElementById('cad-setor-prefix').value='';
-  salvar(); renderCadastros();
+  const id='s'+uid();DB.setores.push({id,nome,prefix,cor});DB.contadores[id]=0;
+  document.getElementById('cad-setor-nome').value='';document.getElementById('cad-setor-prefix').value='';
+  salvar();renderCadastros();
 }
-function removerSetor(id){ if(!confirm('Remover setor?'))return; DB.setores=DB.setores.filter(s=>s.id!==id); salvar(); renderCadastros(); }
+function removerSetor(id){if(!confirm('Remover setor?'))return;DB.setores=DB.setores.filter(s=>s.id!==id);salvar();renderCadastros();}
+
 function addFuncionario(){
   const nome=document.getElementById('cad-func-nome').value.trim();
   const mat=document.getElementById('cad-func-mat').value.trim();
   const sid=document.getElementById('cad-func-setor').value;
   const guiche=document.getElementById('cad-func-guiche').value.trim();
   if(!nome||!sid||!guiche){alert('Preencha todos os campos.');return;}
-  DB.funcionarios.push({id:'f'+uid(),nome,matricula:mat,setorId:sid,guiche,ativo:true});
-  document.getElementById('cad-func-nome').value=''; document.getElementById('cad-func-mat').value=''; document.getElementById('cad-func-guiche').value='';
-  salvar(); renderCadastros();
+  DB.funcionarios.push({id:'f'+uid(),nome,matricula:mat,setorId:sid,guiche,ativo:true,rodizio:funcRodizioFlag});
+  document.getElementById('cad-func-nome').value='';document.getElementById('cad-func-mat').value='';document.getElementById('cad-func-guiche').value='';
+  salvar();renderCadastros();
 }
-function removerFuncionario(id){ if(!confirm('Remover funcionário?'))return; DB.funcionarios=DB.funcionarios.filter(f=>f.id!==id); salvar(); renderCadastros(); }
+function removerFuncionario(id){if(!confirm('Remover funcionário?'))return;DB.funcionarios=DB.funcionarios.filter(f=>f.id!==id);salvar();renderCadastros();}
+function toggleRodizioFunc(id){
+  const f=DB.funcionarios.find(f=>f.id===id);if(!f)return;
+  f.rodizio=!f.rodizio;salvar();renderCadastros();
+}
+
 function addServico(){
   const nome=document.getElementById('cad-serv-nome').value.trim();
   const sid=document.getElementById('cad-serv-setor').value;
   const tempo=parseInt(document.getElementById('cad-serv-tempo').value)||10;
   if(!nome||!sid){alert('Preencha nome e setor.');return;}
-  DB.servicos.push({id:'sv'+uid(),nome,setorId:sid,tempo});
-  document.getElementById('cad-serv-nome').value=''; document.getElementById('cad-serv-tempo').value='';
-  salvar(); renderCadastros();
+  DB.servicos.push({id:'sv'+uid(),nome,setorId:sid,tempo,clienteEscolheFuncionario:servFuncFlag});
+  document.getElementById('cad-serv-nome').value='';document.getElementById('cad-serv-tempo').value='';
+  servFuncFlag=false;const t=document.getElementById('toggle-serv-func');if(t)t.classList.remove('on');
+  salvar();renderCadastros();
 }
-function removerServico(id){ if(!confirm('Remover serviço?'))return; DB.servicos=DB.servicos.filter(s=>s.id!==id); salvar(); renderCadastros(); }
+function removerServico(id){if(!confirm('Remover serviço?'))return;DB.servicos=DB.servicos.filter(s=>s.id!==id);salvar();renderCadastros();}
 
-// USUÁRIOS
-document.addEventListener('change',function(e){
-  if(e.target&&e.target.id==='cad-usr-perfil'){
-    const wrap=document.getElementById('cad-usr-func-wrap');
-    if(wrap) wrap.style.display=e.target.value==='atendente'?'block':'none';
-  }
-});
 function addUsuario(){
   const nome=document.getElementById('cad-usr-nome').value.trim();
   const email=document.getElementById('cad-usr-email').value.trim().toLowerCase();
   const senha=document.getElementById('cad-usr-senha').value;
   const perfil=document.getElementById('cad-usr-perfil').value;
-  const funcId=document.getElementById('cad-usr-func').value||null;
+  const funcId=document.getElementById('cad-usr-func')?.value||null;
   if(!nome||!email||!senha){alert('Preencha nome, e-mail e senha.');return;}
   if(senha.length<6){alert('Senha mínima: 6 caracteres.');return;}
-  if(DB.usuarios.find(u=>u.email===email)){alert('Este e-mail já está cadastrado.');return;}
+  if(DB.usuarios.find(u=>u.email===email)){alert('E-mail já cadastrado.');return;}
   DB.usuarios.push({id:'u'+uid(),nome,email,senha,perfil,funcionarioId:perfil==='atendente'?funcId:null});
-  document.getElementById('cad-usr-nome').value=''; document.getElementById('cad-usr-email').value=''; document.getElementById('cad-usr-senha').value='';
-  salvar(); renderCadastros();
+  document.getElementById('cad-usr-nome').value='';document.getElementById('cad-usr-email').value='';document.getElementById('cad-usr-senha').value='';
+  salvar();renderCadastros();
 }
 function removerUsuario(id){
-  if(usuarioLogado&&usuarioLogado.id===id){alert('Você não pode remover o próprio usuário.');return;}
+  if(usuarioLogado&&usuarioLogado.id===id){alert('Não pode remover o próprio usuário.');return;}
   if(!confirm('Remover usuário?'))return;
-  DB.usuarios=DB.usuarios.filter(u=>u.id!==id); salvar(); renderCadastros();
+  DB.usuarios=DB.usuarios.filter(u=>u.id!==id);salvar();renderCadastros();
 }
 
 function renderCadastros(){
+  // Setores
   const ls=document.getElementById('lista-setores');
-  if(ls) ls.innerHTML=DB.setores.map(s=>`<div class="flex-between" style="padding:8px 0;border-bottom:1px solid var(--border)"><div><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:${s.cor};margin-right:8px"></span><strong>${s.prefix}</strong> — ${s.nome}</div><button class="btn btn-ghost btn-sm" onclick="removerSetor('${s.id}')">Remover</button></div>`).join('')||'<span style="color:var(--text3);font-size:13px">Nenhum setor</span>';
+  if(ls)ls.innerHTML=DB.setores.map(s=>`<div class="flex-between" style="padding:8px 0;border-bottom:1px solid var(--border)"><div><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:${s.cor};margin-right:8px"></span><strong>${s.prefix}</strong> — ${s.nome}</div><button class="btn btn-ghost btn-sm" onclick="removerSetor('${s.id}')">Remover</button></div>`).join('')||'<span style="color:var(--text3);font-size:13px">Nenhum setor</span>';
+  // Funcionários
   const lf=document.getElementById('lista-funcionarios');
-  if(lf) lf.innerHTML=DB.funcionarios.map(f=>`<div class="flex-between" style="padding:8px 0;border-bottom:1px solid var(--border)"><div><strong>${f.nome}</strong> <small style="color:var(--text3)">${f.guiche} · ${getSetor(f.setorId)?.nome||'—'}</small></div><button class="btn btn-ghost btn-sm" onclick="removerFuncionario('${f.id}')">Remover</button></div>`).join('')||'<span style="color:var(--text3);font-size:13px">Nenhum funcionário</span>';
+  if(lf)lf.innerHTML=DB.funcionarios.map(f=>{
+    const rod=f.rodizio?'badge-green':'badge-red';
+    const rodLabel=f.rodizio?'Rodízio ativo':'Fora do rodízio';
+    return `<div class="func-serv-card">
+      <div class="func-serv-row">
+        <div class="func-serv-nome">${f.nome} <small style="color:var(--text3)">· ${f.guiche} · ${getSetor(f.setorId)?.nome||'—'}</small></div>
+        <button class="btn btn-ghost btn-sm" onclick="removerFuncionario('${f.id}')">Remover</button>
+      </div>
+      <div class="func-serv-badges">
+        <span class="badge ${rod}" style="cursor:pointer" onclick="toggleRodizioFunc('${f.id}')">${rodLabel}</span>
+      </div>
+    </div>`;
+  }).join('')||'<span style="color:var(--text3);font-size:13px">Nenhum funcionário</span>';
+  // Serviços
   const lsv=document.getElementById('lista-servicos');
-  if(lsv) lsv.innerHTML=DB.servicos.map(s=>`<div class="flex-between" style="padding:8px 0;border-bottom:1px solid var(--border)"><div><strong>${s.nome}</strong> <small style="color:var(--text3)">${getSetor(s.setorId)?.nome||'—'} · ${s.tempo} min</small></div><button class="btn btn-ghost btn-sm" onclick="removerServico('${s.id}')">Remover</button></div>`).join('')||'<span style="color:var(--text3);font-size:13px">Nenhum serviço</span>';
-  // usuários
+  if(lsv)lsv.innerHTML=DB.servicos.map(s=>`<div class="flex-between" style="padding:8px 0;border-bottom:1px solid var(--border)"><div><strong>${s.nome}</strong> <small style="color:var(--text3)">${getSetor(s.setorId)?.nome||'—'} · ${s.tempo} min ${s.clienteEscolheFuncionario?'· <span style="color:var(--green)">Cliente escolhe atendente</span>':''}</small></div><button class="btn btn-ghost btn-sm" onclick="removerServico('${s.id}')">Remover</button></div>`).join('')||'<span style="color:var(--text3);font-size:13px">Nenhum serviço</span>';
+  // Usuários
   const lu=document.getElementById('lista-usuarios');
-  if(lu) lu.innerHTML=DB.usuarios.map(u=>{
-    const cls={gestor:'ua-gestor',recepcao:'ua-recepcao',atendente:'ua-atendente'}[u.perfil]||'';
-    const ic={gestor:'⚖️',recepcao:'🔔',atendente:'🖥️'}[u.perfil]||'👤';
-    const labels={gestor:'Gestor',recepcao:'Recepção',atendente:'Atendente'};
+  if(lu)lu.innerHTML=DB.usuarios.map(u=>{
+    const cls={gestor:'ua-gestor',recepcao:'ua-recepcao',atendente:'ua-atendente',painel:'ua-painel'}[u.perfil]||'';
+    const ic={gestor:'⚖️',recepcao:'🔔',atendente:'🖥️',painel:'📺'}[u.perfil]||'👤';
+    const labels={gestor:'Gestor',recepcao:'Recepção',atendente:'Atendente',painel:'Painel TV'};
     const func=u.funcionarioId?getFunc(u.funcionarioId):null;
-    return `<div class="user-card"><div class="user-avatar ${cls}">${ic}</div><div style="flex:1"><div style="font-weight:500;font-size:14px">${u.nome}</div><div style="font-size:12px;color:var(--text3)">${u.email}</div>${func?`<div style="font-size:11px;color:var(--text3)">→ ${func.nome} · ${func.guiche}</div>`:''}</div><span class="badge ${u.perfil==='gestor'?'badge-gold':u.perfil==='recepcao'?'badge-blue':'badge-green'}">${labels[u.perfil]}</span><button class="btn btn-ghost btn-sm" onclick="removerUsuario('${u.id}')">Remover</button></div>`;
+    return `<div class="user-card"><div class="user-avatar ${cls}">${ic}</div><div style="flex:1"><div style="font-weight:500;font-size:14px">${u.nome}</div><div style="font-size:12px;color:var(--text3)">${u.email}</div>${func?`<div style="font-size:11px;color:var(--text3)">→ ${func.nome} · ${func.guiche}</div>`:''}</div><span class="badge ${u.perfil==='gestor'?'badge-gold':u.perfil==='recepcao'?'badge-blue':u.perfil==='painel'?'badge-amber':'badge-green'}">${labels[u.perfil]||u.perfil}</span><button class="btn btn-ghost btn-sm" onclick="removerUsuario('${u.id}')">Remover</button></div>`;
   }).join('')||'<span style="color:var(--text3);font-size:13px">Nenhum usuário</span>';
-
-  // selects
-  ['cad-func-setor','cad-serv-setor','rec-setor','gest-setor-filtro'].forEach(selId=>{
-    const el=document.getElementById(selId); if(!el) return;
+  // Selects
+  ['cad-func-setor','cad-serv-setor','gest-setor-filtro'].forEach(selId=>{
+    const el=document.getElementById(selId);if(!el)return;
     const val=el.value;
     const extra=selId==='gest-setor-filtro'?'<option value="">Todos os setores</option>':'<option value="">Selecione...</option>';
     el.innerHTML=extra+DB.setores.map(s=>`<option value="${s.id}">${s.nome}</option>`).join('');
     el.value=val;
   });
-  // select funcionário para usuário
   const cuf=document.getElementById('cad-usr-func');
-  if(cuf){
-    const v=cuf.value;
-    cuf.innerHTML='<option value="">Selecione...</option>'+DB.funcionarios.map(f=>`<option value="${f.id}">${f.nome} — ${f.guiche}</option>`).join('');
-    cuf.value=v;
-  }
+  if(cuf){const v=cuf.value;cuf.innerHTML='<option value="">Selecione...</option>'+DB.funcionarios.map(f=>`<option value="${f.id}">${f.nome} — ${f.guiche}</option>`).join('');cuf.value=v;}
+  renderSetoresGrid();
 }
 
 // ============================================================
 // RENDER ALL
 // ============================================================
 function renderAll(){
-  renderFila();
-  renderPainel();
-  renderAtendente();
-  if(usuarioLogado?.perfil==='gestor') renderGestor();
+  renderFila();renderSetoresGrid();renderPainel();renderAtendente();
+  if(usuarioLogado?.perfil==='gestor')renderGestor();
   renderCadastros();
 }
 
@@ -1282,11 +1329,8 @@ function renderAll(){
 // INIT
 // ============================================================
 carregar();
-if(DB.atendimentoAtual){
-  segundosAtend=Math.floor((Date.now()-DB.atendimentoAtual.inicio)/1000);
-  iniciarTimer();
-}
-setInterval(()=>{ renderPainel(); renderFila(); },10000);
+if(DB.atendimentoAtual){segundosAtend=Math.floor((Date.now()-DB.atendimentoAtual.inicio)/1000);iniciarTimer();}
+setInterval(()=>{renderPainel();renderFila();renderSetoresGrid();},10000);
 </script>
 </body>
 </html>
