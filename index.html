@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SENA — Sistema Eletrônico Notarial de Apoio</title>
+<title>3º Tabelião de Notas de Bauru — SENA v2.1</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&family=Playfair+Display:wght@400;700;900&family=Cormorant+Garamond:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -36,7 +36,14 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--f
 .login-err.show{display:block;}
 
 /* NAV */
-.nav{display:flex;align-items:center;gap:4px;padding:8px 16px;background:var(--bg2);border-bottom:1px solid var(--border);position:fixed;top:0;left:0;right:0;z-index:100;flex-wrap:wrap;}
+.nav{display:flex;align-items:center;gap:4px;padding:8px 16px;background:var(--bg2);border-bottom:1px solid var(--border);position:fixed;top:0;left:0;right:0;z-index:100;flex-wrap:wrap;transition:transform 0.3s ease,opacity 0.3s ease;}
+/* Nav auto-hide quando painel TV está ativo */
+body.painel-mode .nav{transform:translateY(-100%);opacity:0;}
+body.painel-mode .nav:hover,body.painel-mode .nav:focus-within{transform:translateY(0);opacity:1;}
+body.painel-mode #screen-painel{padding-top:0;}
+/* Zona de hover invisível no topo para revelar nav no painel */
+.nav-hover-zone{display:none;position:fixed;top:0;left:0;right:0;height:12px;z-index:99;}
+body.painel-mode .nav-hover-zone{display:block;}
 .nav-logo{display:flex;align-items:center;gap:10px;margin-right:12px;}
 .nav-logo img{height:32px;filter:drop-shadow(0 2px 8px rgba(201,168,76,0.25));}
 .nav-logo-text{font-family:var(--serif);font-size:14px;font-weight:700;color:var(--gold);white-space:nowrap;}
@@ -269,10 +276,10 @@ h2{font-size:20px;font-weight:600;}p{color:var(--text2);font-size:14px;}
 <div id="login-screen">
   <div class="login-box">
     <div class="login-logo">
-      <img src="https://senasis.com.br/Logo.png" alt="SENA" onerror="this.style.display='none'">
-      <h1>SENA</h1>
-      <div class="sena-sigla">Sistema Eletrônico Notarial de Apoio</div>
-      <p style="margin-top:8px">Acesso restrito a usuários cadastrados</p>
+      <img src="https://3tabeliao.com.br/assets/img/logo-3tabeliao.jpg" alt="3º Tabelião" onerror="this.style.display='none'">
+      <h1>3º Tabelião de Notas de Bauru</h1>
+      <div class="sena-sigla">SENA — Sistema Eletrônico Notarial de Apoio</div>
+      <p style="margin-top:8px">Acesso restrito a usuários cadastrados · v2.1</p>
     </div>
     <div class="login-err" id="login-err">E-mail ou senha incorretos.</div>
     <div class="form-group">
@@ -291,8 +298,8 @@ h2{font-size:20px;font-weight:600;}p{color:var(--text2);font-size:14px;}
 <div id="app" style="display:none">
 <nav class="nav" id="main-nav">
   <div class="nav-logo">
-    <img src="https://senasis.com.br/Logo.png" alt="SENA" onerror="this.style.display='none'">
-    <span class="nav-logo-text">SENA</span>
+    <img src="https://3tabeliao.com.br/assets/img/logo-3tabeliao.jpg" alt="3º Tabelião" onerror="this.style.display='none'">
+    <span class="nav-logo-text">3º Tabelião · SENA</span>
   </div>
   <div id="nav-links"></div>
   <div class="nav-right">
@@ -322,13 +329,14 @@ h2{font-size:20px;font-weight:600;}p{color:var(--text2);font-size:14px;}
 </div>
 
 <!-- PAINEL TV -->
+<div class="nav-hover-zone"></div>
 <div class="screen" id="screen-painel">
   <div class="painel-header">
     <div class="painel-header-logo">
-      <img src="https://senasis.com.br/Logo.png" alt="SENA" class="painel-header-img" onerror="this.style.display='none'">
+      <img src="https://3tabeliao.com.br/assets/img/logo-3tabeliao.jpg" alt="3º Tabelião" class="painel-header-img" onerror="this.style.display='none'">
       <div class="painel-header-sep"></div>
       <div class="painel-header-nome">
-        <h1>SENA — Sistema Eletrônico Notarial de Apoio</h1>
+        <h1>Terceiro Tabelião de Notas de Bauru</h1>
         <div class="sub">Painel de Atendimento ao Público</div>
       </div>
     </div>
@@ -370,8 +378,8 @@ h2{font-size:20px;font-weight:600;}p{color:var(--text2);font-size:14px;}
     </div>
   </div>
   <div class="painel-footer">
-    <div class="painel-footer-dev">Desenvolvido por Marcelo Sena de Moraes · Senasis Tecnologia · (14) 99999-9999 · contato@senasis.com.br</div>
-    <div class="painel-footer-ver">SENA v2.0</div>
+    <div class="painel-footer-dev">Desenvolvido por Marcelo Sena de Moraes · SENA — Sistema Eletrônico Notarial de Apoio · marcelosena48@gmail.com</div>
+    <div class="painel-footer-ver">v2.1</div>
     <div class="painel-footer-meta" id="painel-footer-meta"></div>
   </div>
 </div>
@@ -605,8 +613,8 @@ function carregar(){
       {id:'s1',nome:'Cartório de Notas',prefix:'CN',cor:'#c9a84c'},
       {id:'s2',nome:'Registro de Imóveis',prefix:'RI',cor:'#4f8ef7'},
       {id:'s3',nome:'Tabelionato de Protesto',prefix:'TP',cor:'#a78bfa'},
-      {id:'s4',nome:'Escrituras e Afins',prefix:'EA',cor:'#22c55e'},
-      {id:'s5',nome:'Procurações e Afins',prefix:'PA',cor:'#2dd4bf'}
+      {id:'s4',nome:'Escrituras',prefix:'ES',cor:'#22c55e'},
+      {id:'s5',nome:'Procurações',prefix:'PR',cor:'#2dd4bf'}
     ];
     DB.funcionarios=[
       {id:'f1',nome:'Ana Lima',matricula:'001',setorId:'s1',guiche:'Guichê 1',ativo:true,rodizio:true},
@@ -692,6 +700,8 @@ function showScreen(id){
   document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
   const el=document.getElementById('screen-'+id);if(el)el.classList.add('active');
   const btn=document.getElementById('navbtn-'+id);if(btn)btn.classList.add('active');
+  // Oculta nav automaticamente no Painel TV
+  document.body.classList.toggle('painel-mode', id==='painel');
   renderAll();
 }
 
@@ -1168,7 +1178,7 @@ function gerarRelatorio(){
       </table>
     </div>
     <div style="border-top:2px solid #8B6914;padding-top:12px;margin-top:16px;display:flex;justify-content:space-between;align-items:flex-end">
-      <div style="font-size:11px;color:#6b7280;font-family:Georgia,serif">Desenvolvido por Marcelo Sena de Moraes · Senasis Tecnologia · SENA v2.0</div>
+      <div style="font-size:11px;color:#6b7280;font-family:Georgia,serif">Desenvolvido por Marcelo Sena de Moraes · SENA — Sistema Eletrônico Notarial de Apoio · marcelosena48@gmail.com · v2.1</div>
       <div style="font-size:11px;color:#6b7280">Gerado em ${hoje.toLocaleString('pt-BR')} · Uso exclusivo para auditoria interna</div>
     </div>
   </div>`;
